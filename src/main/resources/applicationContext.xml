@@ -16,7 +16,7 @@
   <!--okHttpSupport-->
   <aop:aspectj-autoproxy/>
   <import resource="classpath:spring/spring-guava.xml"/>
-  <import resource="classpath:spring/spring-shiro.xml"/>
+  <!--<import resource="classpath:spring/spring-shiro.xml"/>-->
   <!--<import resource="classpath:spring/spring-db.xml"/>-->
   <import resource="classpath:spring/spring-scheduler.xml"/>
 
