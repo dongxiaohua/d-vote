@@ -19,6 +19,7 @@
   <!--<import resource="classpath:spring/spring-shiro.xml"/>-->
   <!--<import resource="classpath:spring/spring-db.xml"/>-->
   <import resource="classpath:spring/spring-scheduler.xml"/>
+  <import resource="classpath:mybatis/spring-mybatis.xml"/>
 
   <!--&lt;!&ndash; 启用@AspectJ注解 &ndash;&gt;-->
   <!--<aop:config proxy-target-class="true">-->

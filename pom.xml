@@ -58,6 +58,11 @@
       <version>${spring.version}</version>
     </dependency>
     <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
       <version>${spring.version}</version>
@@ -95,7 +100,7 @@
     <dependency>
       <groupId>com.github.colin-lee</groupId>
       <artifactId>jedis-spring-support</artifactId>
-      <version>${jedis-spring-support.version}</version>
+      <version>1.0.0</version>
     </dependency>
 
     <dependency>
