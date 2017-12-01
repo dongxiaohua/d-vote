@@ -11,7 +11,7 @@
   <properties>
     <!--定义各个包的版本-->
     <spring.version>4.2.6.RELEASE</spring.version>
-    <!--<jedis-spring-support.version>2.0.0-SNAPSHOT</jedis-spring-support.version>-->
+    <jedis-spring-support.version>2.0.0-SNAPSHOT</jedis-spring-support.version>
     <shiro-spring.version>1.0.9-SNAPSHOT</shiro-spring.version>
     <http-spring-support.version>1.0.0-SNAPSHOT</http-spring-support.version>
     <servlet.version>3.1.0</servlet.version>
@@ -92,11 +92,11 @@
       <!--<artifactId>http-spring-support</artifactId>-->
       <!--<version>${http-spring-support.version}</version>-->
     <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>com.github.colin-lee</groupId>-->
-      <!--<artifactId>jedis-spring-support</artifactId>-->
-      <!--<version>${jedis-spring-support.version}</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>com.github.colin-lee</groupId>
+      <artifactId>jedis-spring-support</artifactId>
+      <version>${jedis-spring-support.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>mysql</groupId>

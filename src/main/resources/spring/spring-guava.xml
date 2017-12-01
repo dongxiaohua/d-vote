@@ -11,7 +11,6 @@
 
     <bean id="cacheManager" class="org.springframework.cache.guava.GuavaCacheManager"
           p:cacheBuilder-ref="guavaCacheBuilder"/>
-
     <bean id="guavaCacheBuilder" class="com.google.common.cache.CacheBuilder" factory-method="from"
           c:spec="maximumSize=5000,expireAfterAccess=1h,expireAfterWrite=6h"/>
 </beans>
