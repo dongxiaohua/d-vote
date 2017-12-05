@@ -129,11 +129,26 @@
       <artifactId>lombok</artifactId>
       <version>1.16.18</version>
     </dependency>
-
+    <!--groovy-->
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <scope>compile</scope>
+      <version>2.4.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>1.1-groovy-2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-nodep</artifactId>
+      <version>3.2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.objenesis</groupId>
+      <artifactId>objenesis-tck-android</artifactId>
+      <version>2.5.1</version>
     </dependency>
 
   </dependencies>
