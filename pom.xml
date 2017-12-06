@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.dong</groupId>
   <artifactId>vote</artifactId>
@@ -21,7 +21,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
 
@@ -53,9 +53,9 @@
       <version>5.0.1.RELEASE</version>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>org.springFramework</groupId>-->
-      <!--<artifactId>spring-webmvc</artifactId>-->
-      <!--<version>${spring.version}</version>-->
+    <!--<groupId>org.springFramework</groupId>-->
+    <!--<artifactId>spring-webmvc</artifactId>-->
+    <!--<version>${spring.version}</version>-->
     <!--</dependency>-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -98,9 +98,9 @@
       <version>${spring.version}</version>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>com.fxiaoke.common</groupId>-->
-      <!--<artifactId>http-spring-support</artifactId>-->
-      <!--<version>${http-spring-support.version}</version>-->
+    <!--<groupId>com.fxiaoke.common</groupId>-->
+    <!--<artifactId>http-spring-support</artifactId>-->
+    <!--<version>${http-spring-support.version}</version>-->
     <!--</dependency>-->
     <dependency>
       <groupId>com.github.colin-lee</groupId>
@@ -135,14 +135,19 @@
       <version>1.16.18</version>
     </dependency>
     <!--groovy-->
-    <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-      <version>2.4.4</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--<groupId>org.codehaus.groovy</groupId>-->
+    <!--<artifactId>groovy-all</artifactId>-->
+    <!--<version>2.4.4</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
+      <version>1.1-groovy-2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-spring</artifactId>
       <version>1.1-groovy-2.4</version>
     </dependency>
     <dependency>
@@ -150,10 +155,15 @@
       <artifactId>cglib-nodep</artifactId>
       <version>3.2.5</version>
     </dependency>
+    <!--<dependency>-->
+    <!--<groupId>org.objenesis</groupId>-->
+    <!--<artifactId>objenesis-tck-android</artifactId>-->
+    <!--<version>2.5.1</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.objenesis</groupId>
-      <artifactId>objenesis-tck-android</artifactId>
-      <version>2.5.1</version>
+      <artifactId>objenesis</artifactId>
+      <version>2.6</version>
     </dependency>
 
   </dependencies>
