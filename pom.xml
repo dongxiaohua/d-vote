@@ -11,8 +11,7 @@
   <properties>
     <!--定义各个包的版本-->
     <spring.version>4.2.6.RELEASE</spring.version>
-    <jedis-spring-support.version>2.0.0-SNAPSHOT</jedis-spring-support.version>
-    <shiro-spring.version>1.0.9-SNAPSHOT</shiro-spring.version>
+    <shiro.version>1.2.2</shiro.version>
     <http-spring-support.version>1.0.0-SNAPSHOT</http-spring-support.version>
     <servlet.version>3.1.0</servlet.version>
   </properties>
@@ -97,17 +96,12 @@
       <artifactId>spring-messaging</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!--<dependency>-->
-    <!--<groupId>com.fxiaoke.common</groupId>-->
-    <!--<artifactId>http-spring-support</artifactId>-->
-    <!--<version>${http-spring-support.version}</version>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>com.github.colin-lee</groupId>
       <artifactId>jedis-spring-support</artifactId>
       <version>1.0.0</version>
     </dependency>
-
+    <!--mysql  mybatis-->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -128,18 +122,18 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
     </dependency>
-
+    <!--lombok-->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.16.18</version>
     </dependency>
     <!--groovy-->
-    <!--<dependency>-->
-    <!--<groupId>org.codehaus.groovy</groupId>-->
-    <!--<artifactId>groovy-all</artifactId>-->
-    <!--<version>2.4.4</version>-->
-    <!--</dependency>-->
+    <dependency>
+    <groupId>org.codehaus.groovy</groupId>
+    <artifactId>groovy-all</artifactId>
+    <version>2.4.4</version>
+    </dependency>
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
@@ -155,15 +149,31 @@
       <artifactId>cglib-nodep</artifactId>
       <version>3.2.5</version>
     </dependency>
-    <!--<dependency>-->
-    <!--<groupId>org.objenesis</groupId>-->
-    <!--<artifactId>objenesis-tck-android</artifactId>-->
-    <!--<version>2.5.1</version>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>org.objenesis</groupId>
       <artifactId>objenesis</artifactId>
       <version>2.6</version>
+    </dependency>
+    <!--shiro-->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-web</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-ehcache</artifactId>
+      <version>${shiro.version}</version>
     </dependency>
 
   </dependencies>

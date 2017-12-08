@@ -4,7 +4,7 @@
     <span style="margin-left: 20px;">
        <img src="//static.foneshare.cn/oss/images/fxiaoke.logo.png" width="36" height="40"/>
     </span>
-    <span>集成测试平台</span>
+    <span>投票</span>
   </a>
   <nav class="navbar navbar-static-top" role="navigation" style="height: 50px">
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -14,11 +14,6 @@
       <span class="glyphicon glyphicon-th"></span>
       <span class="caret"></span>
     </a>
-    <ul class="dropdown-menu">
-    <#list navigation as nav>
-      <li><a href=${nav[0]}>${nav[1]}</a></li>
-    </#list>
-    </ul>
 
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">

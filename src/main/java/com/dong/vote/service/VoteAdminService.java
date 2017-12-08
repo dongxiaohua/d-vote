@@ -1,10 +1,7 @@
 package com.dong.vote.service;
 
-import org.springframework.stereotype.Service;
-
 /**
- * Created by dongxiaohua on 2017/12/1.
+ * Created by dongxiaohua on 2017/12/8.
  */
-@Service
-public class VoteAdminService {
+public interface VoteAdminService {
 }
