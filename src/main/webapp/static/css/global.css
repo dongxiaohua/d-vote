@@ -1,0 +1,38 @@
+mark {
+    background: orange;
+    color: black;
+}
+
+.sidebar-menu li.header {
+    padding: 10px 25px 10px 15px;
+    font-size: 15px;
+}
+
+.skin-blue .sidebar-menu > li.header {
+    color: #3c8dbc;
+    background: #1a2226;
+}
+
+.btn-warning {
+    margin-bottom: 3px;
+}
+
+.main-header .navbar {
+    height: 50px !important;
+}
+
+.short-input {
+    max-width: 200px;
+}
+
+.large-input {
+    max-width: 600px;
+}
+
+.modal-dialog {
+    position: fixed;
+    top: 30% !important;
+    margin: auto 30%;
+    width: 40%;
+    height: 50%;
+}

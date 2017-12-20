@@ -7,14 +7,18 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="format-detection" content="telephone=no">
-  <title>${title!}</title>
-  <#--<link href="//static.foneshare.cn/oss/datatables-1.10.13/datatables.min.css" rel="stylesheet" type="text/css"/>-->
-  <link href="//static.foneshare.cn/oss/datatables-1.10.15/datatables.min.css" rel="stylesheet" type="text/css"/>
-  <link href="//static.foneshare.cn/oss/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <link href="//static.foneshare.cn/oss/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-  <link href="//static.foneshare.cn/oss/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-  <link href="//static.foneshare.cn/oss/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
-  <link href="//static.foneshare.cn/oss/AdminLTE/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>
+  <title>投票系统</title>
+<#--官网引用-->
+<#--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+<#--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
+<#--<link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>-->
+<#--<link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>-->
+  <link href="${ctx}/static/css/datatables.min.css" rel="stylesheet" type="text/css"/>
+  <link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="${ctx}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <link href="${ctx}/static/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+  <link href="${ctx}/static/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
+  <link href="${ctx}/static/css/_all-skins.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/global.css" rel="stylesheet" type="text/css"/>
 ${headContent}
 </head>
@@ -51,14 +55,22 @@ ${headContent}
 
 </div>
 
-<script src="//http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="//https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<#--<script src="//static.foneshare.cn/oss/AdminLTE/plugins/fastclick/fastclick.min.js"></script>-->
+<#--官网引用-->
+<#--<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+<#--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+<#--<script src="//cdn.bootcss.com/jQuery-slimScroll/1.3.6/jquery.slimscroll.min.js"></script>-->
+<#--<script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.6/jquery.slimscroll.min.js"></script>-->
+<#--<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>-->
 <#--<script src="//static.foneshare.cn/oss/AdminLTE/dist/js/app.js"></script>-->
-<script src="//cdn.bootcss.com/jQuery-slimScroll/1.3.6/jquery.slimscroll.min.js"></script>
 <#--<script src="//static.foneshare.cn/oss/mark.js/8.6.0/jquery.mark.min.js"></script>-->
 <#--<script src="//static.foneshare.cn/oss/datatables.mark.js/2.0.0/datatables.mark.min.js"></script>-->
+<script src="${ctx}/static/js/jquery.min.js"></script>
+<script src="${ctx}/static/js/bootstrap.min.js"></script>
+<script src="${ctx}/static/js/datatables.min.js"></script>
+<script src="${ctx}/static/js/jquery.slimscroll.min.js"></script>
+<script src="${ctx}/static/js/fastclick.js"></script>
+<script src="${ctx}/static/js/AdminLTE.min.js"></script>
+<script src="${ctx}/static/js/jquery.mark.min.js"></script>
 <script src="${ctx}/static/js/global.js"></script>
 
 ${scriptContent}
