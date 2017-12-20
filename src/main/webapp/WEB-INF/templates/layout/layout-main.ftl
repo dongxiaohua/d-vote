@@ -7,16 +7,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="format-detection" content="telephone=no">
-  <title>投票系统</title>
-<#--官网引用-->
-<#--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-<#--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
-<#--<link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>-->
-<#--<link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css"/>-->
+  <title>D-VOTE</title>
   <link href="${ctx}/static/css/datatables.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<#--<link href="${ctx}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
   <link href="${ctx}/static/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/_all-skins.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/global.css" rel="stylesheet" type="text/css"/>
@@ -24,6 +20,7 @@ ${headContent}
 </head>
 
 <#if header_nav??>
+                            <#--skin可变换模板颜色-->
 <body class="hold-transition skin-blue fixed sidebar-collapse" data-spy="scroll" data-target="#scrollspy">
 <#elseif no_nav??>
 <body class="hold-transition skin-blue" data-spy="scroll" data-target="#scrollspy">
@@ -62,8 +59,8 @@ ${headContent}
 <#--<script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.6/jquery.slimscroll.min.js"></script>-->
 <#--<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>-->
 <#--<script src="//static.foneshare.cn/oss/AdminLTE/dist/js/app.js"></script>-->
-<#--<script src="//static.foneshare.cn/oss/mark.js/8.6.0/jquery.mark.min.js"></script>-->
 <#--<script src="//static.foneshare.cn/oss/datatables.mark.js/2.0.0/datatables.mark.min.js"></script>-->
+
 <script src="${ctx}/static/js/jquery.min.js"></script>
 <script src="${ctx}/static/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/js/datatables.min.js"></script>
