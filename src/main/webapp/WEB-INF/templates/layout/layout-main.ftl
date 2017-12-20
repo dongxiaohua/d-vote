@@ -11,8 +11,8 @@
   <link href="${ctx}/static/css/datatables.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-<#--<link href="${ctx}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <#--<link href="${ctx}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
   <link href="${ctx}/static/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/_all-skins.min.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/global.css" rel="stylesheet" type="text/css"/>
