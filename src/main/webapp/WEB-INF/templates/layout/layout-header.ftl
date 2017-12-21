@@ -1,7 +1,7 @@
 <header class="main-header">
   <a href="${ctx}" class="logo">
 
-    <span style="margin-left: 10px;">
+    <span style="margin-left: -10px;">
       <#--头像-->
        <img src="" width="36" height="40"/>
     </span>
