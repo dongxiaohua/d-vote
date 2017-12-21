@@ -19,17 +19,17 @@ class HomeController {
   //    }
 
   @RequestMapping("/unauthorized")
-  String unauthorized() {
+  public String unauthorized() {
     return "/home/unauthorized";
   }
 
   @RequestMapping("/error")
-  String error() {
+  public String error() {
     return "home/error";
   }
 
   @RequestMapping(value = {"/home", "/"})
-  String home() {
+  public String home() {
     return "home/home";
   }
 
