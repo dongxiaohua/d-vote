@@ -1,8 +1,6 @@
 package com.dong.vote.serverTest
 
-import com.dong.vote.mapper.VoteAdminMapper
 import lombok.extern.slf4j.Slf4j
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
