@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
+ *  v_vote 投票表
  * @author dongxiaohua
  * @date 2017/12/1
  */

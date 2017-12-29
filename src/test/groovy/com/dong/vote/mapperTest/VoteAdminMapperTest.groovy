@@ -1,6 +1,6 @@
 package com.dong.vote.mapperTest
 
-import com.dong.vote.mapper.VoteAdminMapper
+import com.dong.vote.mapper.VoteUserMapper
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
@@ -13,19 +13,14 @@ import spock.lang.Specification
 @Slf4j
 class VoteAdminMapperTest extends Specification {
   @Autowired
-  VoteAdminMapper voteAdminMapper
+  VoteUserMapper voteUserMapper
 
-  def "findById-mapper" (){
+  def "findUserById-mapper" (){
     given:
     def id = 1
     expect:
-    println "=========" + voteAdminMapper.findById(id)
+    println "=========" + voteUserMapper.findById(id).userName
 
-  }
-
-  def "finAll-mapper" () {
-    expect:
-    println "========" + voteAdminMapper.findAll()
   }
 
 

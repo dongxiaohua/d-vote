@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
+ *  历史表
  * @author dongxiaohua
  * @date 2017/12/29
  */
