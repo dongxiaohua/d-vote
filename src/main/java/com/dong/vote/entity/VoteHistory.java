@@ -10,17 +10,17 @@ import java.util.Date;
 
 /**
  * @author dongxiaohua
- * @date 2017/12/1
+ * @date 2017/12/29
  */
 @Getter
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vote {
+public class VoteHistory {
   private int id;
+  private int vNum;
   private String vName;
-  private String vNum;
   private Date createdTime;
-
+  private Date pastTime;
 }

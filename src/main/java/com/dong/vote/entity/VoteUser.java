@@ -6,21 +6,19 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 /**
  * @author dongxiaohua
- * @date 2017/12/1
+ * @date 2017/12/29
  */
 @Getter
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vote {
+public class VoteUser {
   private int id;
-  private String vName;
-  private String vNum;
-  private Date createdTime;
+  private String userName;
+  private String passWord;
+  private int limit;
 
 }

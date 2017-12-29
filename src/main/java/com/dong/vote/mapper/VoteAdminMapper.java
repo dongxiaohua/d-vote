@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * Created by dongxiaohua on 2017/12/1.
+ * @author dongxiaohua
+ * @date 2017/12/1
  */
 public interface VoteAdminMapper {
 

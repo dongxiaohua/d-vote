@@ -3,7 +3,7 @@
 
     <span style="margin-left: -10px;">
       <#--头像-->
-       <img src="" width="36" height="40"/>
+       <img src="${ctx}/static/img/dxh.png" width="40" height="37" class="img-circle"/>
     </span>
     <span>网络投票</span>
   </a>
@@ -18,7 +18,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <#--头像-->
-            <img src="" class="user-image" alt="User Image">
+            <img src="${ctx}/static/img/dxh.png" class="user-image" alt="User Image">
             <span class="hidden-xs">
             <#--${principal()!}-->
                         </span>
@@ -26,7 +26,7 @@
           <ul class="dropdown-menu">
             <li class="user-header">
               <#--头像-->
-              <img src="" class="img-circle" alt="User Image">
+              <img src="${ctx}/static/img/dxh.png" class="img-circle" alt="User Image">
               <p>
               <#--${principal()!}-->
               </p>
