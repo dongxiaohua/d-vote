@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>D-VOTE</title>
   <link href="${ctx}/static/css/datatables.min.css" rel="stylesheet" type="text/css"/>
-  <link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="${ctx}/static/css/bootstrap.css" rel="stylesheet" type="text/css"/>
   <link href="${ctx}/static/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <#--<link href="${ctx}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
@@ -31,7 +31,6 @@ ${headContent}
 <#if !no_nav??>
     <#include "layout-header.ftl" />
     <#include "layout-sidebar.ftl" />
-    <#include "layout-right-sidebar.ftl" />
 </#if >
 
   <div class="content-wrapper" #if(no_nav)style="margin:0px;" #end>
@@ -59,11 +58,20 @@ ${headContent}
 <script src="${ctx}/static/js/jquery.slimscroll.min.js"></script>
 <script src="${ctx}/static/js/fastclick.js"></script>
 <script src="${ctx}/static/js/AdminLTE.min.js"></script>
-<script src="${ctx}/static/js/app.js"></script>
+<#--<script src="${ctx}/static/js/app.js"></script>-->
 <script src="${ctx}/static/js/jquery.mark.min.js"></script>
 <script src="${ctx}/static/js/global.js"></script>
 
 ${scriptContent}
 
+<#--控制导航栏的js-->
+<script>
+  $("ul.treeview-menu a").each(function () {
+    if (window.location.href.startsWith(this.href)) {
+      $(this).parent("li").addClass("active");
+      $(this).parents().parents().parents("li").addClass("active");
+    }
+  });
+</script>
 </body>
 </html>

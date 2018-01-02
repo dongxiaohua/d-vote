@@ -2,6 +2,8 @@ $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
     $(this).find('em:first').toggleClass("glyphicon-minus");
 });
 $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+
+
 //自定义 cpu使用率排序
 jQuery.fn.dataTableExt.oSort['number-fate-asc'] = function (s1, s2) {
     s1 = s1.replace('%', '');
@@ -190,3 +192,4 @@ var AdminLTEOptions = {
         lg: 1200
     }
 };
+

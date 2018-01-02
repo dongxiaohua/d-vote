@@ -15,7 +15,6 @@
                 </div>
                 <div class="box-body">
                     欢迎
-                  <button class="btn btn-default" data-toggle="control-sidebar">Toggle Right Sidebar</button>
                 </div>
             </div>
         </div>
