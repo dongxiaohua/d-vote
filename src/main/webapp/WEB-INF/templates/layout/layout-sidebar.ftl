@@ -2,7 +2,7 @@
   <!-- Inner sidebar -->
   <div class="sidebar">
     <!-- Sidebar Menu -->
-    <ul class="sidebar-menu" data-widget="tree">
+    <ul class="sidebar-menu">  <#--data-widget="tree"-->
       <li class="header">MAIN NAVIGATION</li>
       <li class="treeview">
         <a href="#">
