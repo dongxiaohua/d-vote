@@ -60,7 +60,7 @@ ${headContent}
 <script src="${ctx}/static/js/AdminLTE.min.js"></script>
 <script src="${ctx}/static/js/jquery.mark.min.js"></script>
 <script src="${ctx}/static/js/global.js"></script>
-<script src="${ctx}/static/js/app.js"></script>
+<#--<script src="${ctx}/static/js/app.js"></script>-->
 
 ${scriptContent}
 

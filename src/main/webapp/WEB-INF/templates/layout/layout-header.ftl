@@ -8,7 +8,7 @@
     <span>网络投票</span>
   </a>
   <nav class="navbar navbar-static-top" role="navigation" style="height: 50px">
-    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
       <span class="sr-only">Toggle navigation</span>
     </a>
 
