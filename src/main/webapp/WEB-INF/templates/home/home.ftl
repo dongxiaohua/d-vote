@@ -2,7 +2,6 @@
 <#assign headContent>
 </#assign>
 
-
 <#assign breadcrumbContent>
 </#assign>
 
@@ -16,14 +15,13 @@
                 </div>
                 <div class="box-body">
                     欢迎
+                  <button class="btn btn-default" data-toggle="control-sidebar">Toggle Right Sidebar</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 </#assign>
-
 <#assign scriptContent>
 </#assign>
-
 <#include "../layout/layout-main.ftl" />

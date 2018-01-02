@@ -31,6 +31,7 @@ ${headContent}
 <#if !no_nav??>
     <#include "layout-header.ftl" />
     <#include "layout-sidebar.ftl" />
+    <#include "layout-right-sidebar.ftl" />
 </#if >
 
   <div class="content-wrapper" #if(no_nav)style="margin:0px;" #end>
