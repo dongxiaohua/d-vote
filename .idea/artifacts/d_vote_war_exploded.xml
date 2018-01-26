@@ -54,6 +54,7 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.22" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.2.8" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.2.4" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:sources:1.2.35" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.18" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.4" />
           <element id="library" level="project" name="Maven: cglib:cglib-nodep:3.2.5" />

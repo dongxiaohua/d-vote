@@ -126,6 +126,13 @@
       <artifactId>mybatis-spring</artifactId>
       <version>1.2.4</version>
     </dependency>
+    <!--fastjson-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.35</version>
+      <classifier>sources</classifier>
+    </dependency>
     <!--lombok-->
     <dependency>
       <groupId>org.projectlombok</groupId>
