@@ -5,17 +5,17 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 /**
- * Created by dongxiaohua on 2017-12-1.
+ * @author dongxiaohua
+ *  Created on 2017-12-1.
  */
 @ContextConfiguration(locations = "classpath:mapperContext.xml")
 @Slf4j
 class VoteAdminServiceTest extends Specification {
 
 
-  def "find-service" (){
+  def "find-service"() {
 
   }
-
 
 
 }

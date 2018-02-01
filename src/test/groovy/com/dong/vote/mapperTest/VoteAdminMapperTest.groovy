@@ -7,7 +7,8 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 /**
- * Created by dongxiaohua on 2017-12-1.
+ * @author dongxiaohua
+ *  Created on 2017-12-1.
  */
 @ContextConfiguration(locations = "classpath:mapperContext.xml")
 @Slf4j
@@ -15,7 +16,7 @@ class VoteAdminMapperTest extends Specification {
   @Autowired
   VoteUserMapper voteUserMapper
 
-  def "findUserById-mapper" (){
+  def "findUserById-mapper"() {
     given:
     def id = 1
     expect:

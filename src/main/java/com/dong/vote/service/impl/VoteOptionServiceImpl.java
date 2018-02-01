@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
  * @date 2017/12/29
  */
 @Service
-public class VoteOptionServiceImpl implements VoteOptionService{
+public class VoteOptionServiceImpl implements VoteOptionService {
 }

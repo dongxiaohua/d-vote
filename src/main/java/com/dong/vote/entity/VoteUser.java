@@ -7,7 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- *  用户表
+ * 用户表
+ *
  * @author dongxiaohua
  * @date 2017/12/29
  */

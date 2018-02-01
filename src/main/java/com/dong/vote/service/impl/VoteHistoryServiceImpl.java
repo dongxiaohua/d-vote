@@ -4,7 +4,6 @@ import com.dong.vote.service.VoteHistoryService;
 import org.springframework.stereotype.Service;
 
 /**
- *
  * @author dongxiaohua
  * @date 2017/12/29
  */

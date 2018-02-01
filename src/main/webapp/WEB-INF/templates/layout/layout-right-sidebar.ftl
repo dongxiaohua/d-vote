@@ -4,4 +4,6 @@
 </aside>
 <!-- The sidebar's background -->
 <!-- This div must placed right after the sidebar for it to work-->
-<div class="control-sidebar-bg"></div>
+<div class="control-sidebar-bg">
+
+</div>

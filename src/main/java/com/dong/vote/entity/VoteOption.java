@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- *  选项表
+ * 选项表
+ *
  * @author dongxiaohua
  * @date 2017/12/29
  */

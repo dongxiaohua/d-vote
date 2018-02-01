@@ -14,17 +14,17 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="${ctx}/error"><i class="fa fa-circle-o"></i> Dashboard v1</a>
+            <a href="${ctx}/error"><i class="fa fa-list-alt"></i> 最新投票列表</a>
           </li>
           <li>
-            <a href="${ctx}/home"><i class="fa fa-circle-o"></i> Dashboard v2</a>
+            <a href="${ctx}/home"><i class="fa fa-history"></i> 历史投票</a>
           </li>
         </ul>
       </li>
 
       <li class="treeview">
         <a href="#">
-          <i class="fa fa-files-o"></i>
+          <i class="fa fa-user"></i>
           <span>管理员</span>
           <span class="pull-right-container">
               <#--<span class="label label-primary pull-right">4</span>-->
@@ -33,7 +33,10 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="${ctx}/unauthorized"><i class="fa fa-circle-o"></i> Fixed</a>
+            <a href="${ctx}/unauthorized"><i class="fa fa-circle-o"></i> 列表</a>
+          </li>
+          <li>
+            <a href="${ctx}/unauthorized"><i class="fa fa-circle-o"></i> 创建投票</a>
           </li>
         </ul>
       </li>
