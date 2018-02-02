@@ -53,6 +53,7 @@ ${headContent}
 </div>
 
 <script src="${ctx}/static/js/jquery.min.js"></script>
+<#--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
 <script src="${ctx}/static/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/js/datatables.min.js"></script>
 <script src="${ctx}/static/js/jquery.slimscroll.min.js"></script>
@@ -64,14 +65,16 @@ ${headContent}
 
 ${scriptContent}
 
-<#--控制导航栏的js-->
 <script>
+  <#--控制导航栏的js-->
   $("ul.treeview-menu a").each(function () {
     if (window.location.href.startsWith(this.href)) {
       $(this).parent("li").addClass("active");
       $(this).parents().parents().parents("li").addClass("active");
     }
   });
+//  版本控制
+  $('#versionData').html("Copyright &copy; 2011- "+ new Date().getFullYear() + " <a href='https://github.com/dongxiaohua/d-vote'>dongxiaohua</a>.")
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="${ctx}/error"><i class="fa fa-list-alt"></i> 最新投票列表</a>
+            <a href="${ctx}/v/list"><i class="fa fa-list-alt"></i> 最新投票列表</a>
           </li>
           <li>
             <a href="${ctx}/home"><i class="fa fa-history"></i> 历史投票</a>

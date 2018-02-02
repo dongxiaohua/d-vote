@@ -2,5 +2,5 @@
   <div class="pull-right hidden-xs">
     <b>Version</b> 1.0.0
   </div>
-  <strong>Copyright &copy; 2017-2018 <a href="">dongxiaohua</a>.</strong> All rights reserved.
+  <strong id="versionData"></strong> All rights reserved.
 </footer>

@@ -10,12 +10,7 @@ import spock.lang.Specification
  */
 @ContextConfiguration(locations = "classpath:mapperContext.xml")
 @Slf4j
-class VoteAdminServiceTest extends Specification {
-
-
-  def "find-service"() {
-
-  }
+class VoteServiceTest extends Specification {
 
 
 }

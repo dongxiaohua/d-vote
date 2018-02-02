@@ -22,7 +22,7 @@ import java.util.Date;
 public class Vote {
   private int id;
   private String vName;
-  private String vNum;
+  private String status;
   private Date createdTime;
 
 }
