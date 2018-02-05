@@ -14,16 +14,16 @@ import java.util.List;
  */
 public interface VoteOptionMapper {
 
-  @Insert("INSERT INTO v_option(o_name,v_id,o_poll,created_time,modify_time) VALUES(#{oName},#{vId},#{oPoll},now(),now())")
-  int insert(@Param("oName") String oName, @Param("vId") int vId, @Param("oPoll") int oPoll);
+  @Insert("INSERT INTO v_option(option_name,vote_id,option_poll,created_time,modify_time) VALUES(#{optionName},#{voteId},#{optionPoll},now(),now())")
+  int insert(@Param("optionName") String optionName, @Param("voteId") int voteId, @Param("optionPoll") int optionPoll);
 
-  @Select("SELECT * FROM v_option WHERE v_id = #{vId}")
-  List<VoteOption> findOptionByVid(@Param("vId") int vId);
+  @Select("SELECT * FROM v_option WHERE vote_id = #{voteId}")
+  List<VoteOption> findOptionByVoteId(@Param("voteId") int voteId);
 
-  @Update("UPDATE v_option SET o_poll = o_poll+1, modify_time = now() WHERE id = #{id}")
+  @Update("UPDATE v_option SET option_poll = option_poll+1, modify_time = now() WHERE id = #{id}")
   int updateOption(@Param("id") int id);
 
-  @Select("SELECT count(*) FROM v_option WHERE o_name = #{oName} AND v_id = #{vId}")
-  int checkIn(@Param("oName") String oName,@Param("vId") int vId);
+  @Select("SELECT count(*) FROM vote_option WHERE option_name = #{optionName} AND vote_id = #{voteId}")
+  int checkIn(@Param("optionName") String oName,@Param("voteId") int voteId);
 
 }

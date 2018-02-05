@@ -11,18 +11,13 @@
 </section>
 </#assign>
 <#assign bodyContent>
-<#--<div class="ggt">-->
-  <#--<#list optionList as option>-->
-      <#--${option.optionName}<p/>-->
-  <#--</#list>-->
-<#--</div>-->
 <section class="content">
   <div class="row">
     <div class="col-md-12">
       <div class="box box-info">
         <div class="box-header with-border">
           <h4 class="box-title">当前投票名称:</h4>
-          <h3 class="box-title btn btn-info">${vote.vName!}</h3>
+          <h3 class="box-title btn btn-info">${vote.voteName!}</h3>
         </div>
         <form class="form-horizontal" action="${ctx}/v/voting" method="post" id="myForm" role="form" data-toggle="validator">
           <div class="box-body">
@@ -30,7 +25,7 @@
               <div class="form-group">
                 <div class="checkbox">
                   <label class="col-sm-offset-2">
-                    <input type="checkbox" value="${option.id!}" name="optionId">${option.optionName}
+                    <input type="checkbox" value="${option.id!}" name="optionId">${option.optionName!}
                   </label>
                 </div>
               </div>

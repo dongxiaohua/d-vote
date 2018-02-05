@@ -64,7 +64,7 @@ public class VoteController {
     list.forEach(vote -> {
       List<Object> data = Lists.newArrayList();
       data.add(vote.getId());
-      data.add(vote.getVName());
+      data.add(vote.getVoteName());
       data.add(vote.getStatus());
       data.add(fmt.format(vote.getCreatedTime()));
       data.add(String.valueOf(vote.getId()));
@@ -83,7 +83,7 @@ public class VoteController {
   @RequestMapping(value = "/voting", method = RequestMethod.GET)
   public String voting(@RequestParam int id, Model model) {
     Vote vote = voteMapper.findVoteById(id);
-    List<VoteOption> optionList = voteOptionMapper.findOptionByVid(id);
+    List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(id);
     model.addAttribute("vote", vote);
     model.addAttribute("optionList", optionList);
     return "vote/voting";
@@ -106,7 +106,7 @@ public class VoteController {
         log.info("投票成功");
         r.addFlashAttribute("success", "投票成功");
       } else {
-        VoteOption voteOption = VoteOption.builder().optionName(otherOption).vId(voteId).build();
+        VoteOption voteOption = VoteOption.builder().optionName(otherOption).voteId(voteId).build();
         optionService.insertOption(voteOption);
         log.info("投票成功");
         r.addFlashAttribute("success", "投票成功");
