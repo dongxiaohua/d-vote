@@ -16,7 +16,10 @@ public interface VoteMapper {
   @Select("SELECT * FROM v_vote")
   List<Vote> findAll();
 
-  @Insert("INSERT INTO v_vote(v_name,created_time,modify_time) VALUES(#{vName},now(),now())")
-  int insert(@Param("vName") String vName);
-  
+  @Select("SELECT * FROM v_vote WHERE id = #{id}")
+  Vote findVoteById(@Param("id") int id);
+
+  @Insert("INSERT INTO v_vote(v_name,status,created_time,modify_time) VALUES(#{vName},#{status},now(),now())")
+  int insert(@Param("vName") String vName, @Param("status") String status);
+
 }

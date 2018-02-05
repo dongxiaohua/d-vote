@@ -19,9 +19,10 @@ class VoteMapperTest extends Specification {
 
   def "insert-test"() {
     given:
-    def vName = "中华人民共和国"
+    def vName = "呵呵"
+    def status = "initiate"
     expect:
-    println "============" + voteMapper.insert(vName)
+    println "============" + voteMapper.insert(vName,status)
   }
 
   def "findAll-test"() {

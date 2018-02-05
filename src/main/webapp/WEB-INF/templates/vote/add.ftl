@@ -1,3 +1,4 @@
+<#assign active_nav="vote-add">
 <#assign headContent>
 <link href="//static.foneshare.cn/oss/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 </#assign>

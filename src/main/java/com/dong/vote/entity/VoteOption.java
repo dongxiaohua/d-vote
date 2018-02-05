@@ -22,7 +22,7 @@ import java.util.Date;
 public class VoteOption {
   private int id;
   private String oName;
-  private int vNum;
+  private int vId;
   private int oPoll;
   private Date createdTime;
 }

@@ -1,3 +1,4 @@
+<#assign active_nav="vote-list">
 <#assign headContent>
 <link type="text/css" href="${ctx}/static/css/dataTables.bootstrap.css"/>
 <link type="text/css" href="${ctx}/static/css/dataTables.checkboxes.css"/>
@@ -74,7 +75,7 @@
         "targets": 4,
         "render": function (data, type, row, meta) {
           if (type === 'display') {
-            return "<a href='${ctx}/v/detail/?id=" + data + "'>投票详情</a>";
+            return "<a href='${ctx}/v/voting/?id=" + data + "'>参与投票</a>";
           }
           return data;
         }
