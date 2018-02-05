@@ -14,15 +14,14 @@ import java.util.Date;
  * @author dongxiaohua
  * @date 2017/12/29
  */
-@Getter
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class VoteOption {
   private int id;
-  private String oName;
-  private int vId;
-  private int oPoll;
+  private String optionName;
+  private int voteId;
+  private int optionPoll;
   private Date createdTime;
 }

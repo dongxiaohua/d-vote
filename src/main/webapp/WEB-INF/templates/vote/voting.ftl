@@ -11,6 +11,11 @@
 </section>
 </#assign>
 <#assign bodyContent>
+<#--<div class="ggt">-->
+  <#--<#list optionList as option>-->
+      <#--${option.optionName}<p/>-->
+  <#--</#list>-->
+<#--</div>-->
 <section class="content">
   <div class="row">
     <div class="col-md-12">
@@ -25,7 +30,7 @@
               <div class="form-group">
                 <div class="checkbox">
                   <label class="col-sm-offset-2">
-                    <input type="checkbox" value="${option.id!}" name="optionId">${option.oName!}
+                    <input type="checkbox" value="${option.id!}" name="optionId">${option.optionName}
                   </label>
                 </div>
               </div>
@@ -57,10 +62,9 @@
 </#assign>
 <#assign scriptContent>
 <script src="${ctx}/static/js/validator.min.js"></script>
-<script>
-  <#list optionList as option>
-      console.log('${option}');
-  </#list>
-</script>
+
+
+
 </#assign>
+
 <#include "../layout/layout-main.ftl" />

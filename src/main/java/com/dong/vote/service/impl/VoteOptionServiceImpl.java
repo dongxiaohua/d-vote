@@ -20,6 +20,6 @@ public class VoteOptionServiceImpl implements VoteOptionService {
 
   @Override
   public int insertOption(VoteOption voteOption) {
-    return voteOptionMapper.insert(voteOption.getOName(),voteOption.getVId(),voteOption.getOPoll());
+    return voteOptionMapper.insert(voteOption.getOptionName(),voteOption.getVId(),voteOption.getOPoll());
   }
 }

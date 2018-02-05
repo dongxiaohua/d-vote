@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,11 +81,11 @@ public class VoteController {
    * @return
    */
   @RequestMapping(value = "/voting", method = RequestMethod.GET)
-  public String voting(@RequestParam int id, ModelMap model) {
+  public String voting(@RequestParam int id, Model model) {
     Vote vote = voteMapper.findVoteById(id);
     List<VoteOption> optionList = voteOptionMapper.findOptionByVid(id);
-    model.put("vote", vote);
-    model.put("optionList", optionList);
+    model.addAttribute("vote", vote);
+    model.addAttribute("optionList", optionList);
     return "vote/voting";
   }
 
@@ -105,7 +106,7 @@ public class VoteController {
         log.info("投票成功");
         r.addFlashAttribute("success", "投票成功");
       } else {
-        VoteOption voteOption = VoteOption.builder().oName(otherOption).vId(voteId).build();
+        VoteOption voteOption = VoteOption.builder().optionName(otherOption).vId(voteId).build();
         optionService.insertOption(voteOption);
         log.info("投票成功");
         r.addFlashAttribute("success", "投票成功");
