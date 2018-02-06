@@ -11,7 +11,6 @@ import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,21 +91,25 @@ public class VoteController {
   /**
    * 参与投票
    *
+   * @param optionId 选中选项的id
+   * @param otherOption 添加的选项名称
+   * @param voteId 投票Id
+   * @param r
    * @return
    */
   @RequestMapping(value = "/voting", method = RequestMethod.POST)
   public String votingPost(@RequestParam int optionId, @RequestParam String otherOption, @RequestParam int voteId, RedirectAttributes r) {
-      if (voteOptionMapper.checkIn(otherOption,voteId) != 0) {
-        r.addFlashAttribute("error","此选项名称已存在");
-        return "redirect:/v/voting?id=" + voteId;
-      }
+    if (Strings.isNullOrEmpty(otherOption) && optionId == 0) {
+      r.addFlashAttribute("waring","您没有做出选择");
+      return "redirect:/v/voting?id=" + voteId;
+    }
     try {
       if (Strings.isNullOrEmpty(otherOption)) {
         voteOptionMapper.updateOption(optionId);
         log.info("投票成功");
         r.addFlashAttribute("success", "投票成功");
       } else {
-        VoteOption voteOption = VoteOption.builder().optionName(otherOption).voteId(voteId).build();
+        VoteOption voteOption = VoteOption.builder().optionName(otherOption).voteId(voteId).optionPoll(1).build();
         optionService.insertOption(voteOption);
         log.info("投票成功");
         r.addFlashAttribute("success", "投票成功");
@@ -117,6 +120,8 @@ public class VoteController {
     }
     return "redirect:/v/voting?id=" + voteId;
   }
+
+  //TODO 指定投票的详情页面
 
 
 }
