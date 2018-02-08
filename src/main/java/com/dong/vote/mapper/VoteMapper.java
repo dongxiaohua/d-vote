@@ -13,16 +13,40 @@ import java.util.List;
  */
 public interface VoteMapper {
 
-  @Select("SELECT * FROM v_vote")
-  List<Vote> findAll();
+    /**
+     * 查询所有投票
+     *
+     * @return
+     */
+    @Select("SELECT * FROM v_vote")
+    List<Vote> findAll();
 
-  @Select("SELECT * FROM v_vote WHERE id = #{id}")
-  Vote findVoteById(@Param("id") int id);
+    /**
+     * 根据ID查找投票
+     *
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM v_vote WHERE id = #{id}")
+    Vote findVoteById(@Param("id") int id);
 
-  @Insert("INSERT INTO v_vote(vote_name,status,created_time,modify_time) VALUES(#{voteName},#{status},now(),now())")
-  int insert(@Param("voteName") String voteName, @Param("status") String status);
+    /**
+     * 创建投票
+     *
+     * @param voteName
+     * @param status
+     * @return
+     */
+    @Insert("INSERT INTO v_vote(vote_name,status,created_time,modify_time) VALUES(#{voteName},#{status},now(),now())")
+    int insert(@Param("voteName") String voteName, @Param("status") String status);
 
-  @Select("SELECT vote_name FROM v_vote WHERE id=#{voteId}")
-  String findVoteNameById(@Param("voteId") int voteId);
+    /**
+     * 根据ID查询投票名称
+     *
+     * @param voteId
+     * @return
+     */
+    @Select("SELECT vote_name FROM v_vote WHERE id=#{voteId}")
+    String findVoteNameById(@Param("voteId") int voteId);
 
 }
