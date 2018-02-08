@@ -18,10 +18,10 @@ class VoteHistoryMapperTest extends Specification {
 
   def "insert-test"() {
     given:
-    def vId = 2
-    def vName = "投票名称"
+    def voteId = 2
+    def voteName = "投票名称"
     expect:
-    println "============" + voteHistoryMapper.insert(vId,vName)
+    println "============" + voteHistoryMapper.insert(voteId,voteName)
   }
 
 }

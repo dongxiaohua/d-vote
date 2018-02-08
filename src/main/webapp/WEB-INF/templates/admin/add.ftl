@@ -22,65 +22,13 @@
         <form class="form-horizontal" action="${ctx}/v/add" method="post" id="myForm" role="form" data-toggle="validator">
           <div class="box-body">
 
-            <div id="selectBiz" class="form-group">
-              <label for="bizId" class="col-sm-2 control-label">环境</label>
-              <div class="col-sm-4">
-                <select id="biz" name="biz" class="selectpicker show-tick form-control" title="请选择" data-live-search="true" required>
-                  <#--<option value="1" selected="selected"></option>-->
-                    <#list bizConfigList! as biz>
-                      <#if biz == "foneshare">
-                        <option value=${biz} selected="selected">${biz}</option>
-                      <#else>
-                        <option value=${biz}>${biz}</option>
-                      </#if>
-                    </#list>
-                </select>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
             <div class="form-group">
               <label for="eids" class="col-sm-2 control-label">租户</label>
               <div class="col-sm-4">
-                <textarea id="eidsAll" name="eidsAll" class="form-control" style="height: 140px" placeholder="输入'All'代表全刷" required></textarea>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="hook" class="col-sm-2 control-label">处理地址</label>
-              <div class="col-sm-4 input-group" style="padding-left: 15px;padding-right: 10px;">
-                <span class="input-group-addon" id="basic-addon3">${headUrl!''}</span>
                 <input type="text" class="form-control" id="hook" name="hook" value="" placeholder="必填" required>
-              </div>
-              <div class="help-block with-errors" style="padding-left: 290px;"></div>
-            </div>
-
-
-            <div class="form-group">
-              <label for="sql" class="col-sm-2 control-label">查询语句</label>
-              <div class="col-sm-4">
-                  <textarea id="sql" name="sql" class="form-control" style="height: 140px" placeholder="
-           例如：SELECT * FROM table WHERE ei=$!{ei}...或 WHERE tenant_id=$!{ei}..." required></textarea>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
-
-            <div class="form-group">
-              <label for="describe" class="col-sm-2 control-label">描述</label>
-              <div class="col-sm-4">
-              <#--<input type="text" class="form-control" id="describe" name="describe" value="" placeholder="必填" required>-->
-                <textarea id="describe" name="describe" class="form-control" style="height: 100px"></textarea>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-
-
-          <#--&lt;#&ndash;文档上传&ndash;&gt;-->
-            <#--<label for="sql" class="col-sm-3 control-label">SQL语句可上传</label>-->
-            <#--<input type="file" name="upload" id="upload"/>-->
-          <#--&lt;#&ndash; accept="text/plain" 属性规定只能是.txt文件&ndash;&gt;-->
-          <#--&lt;#&ndash;文档上传end&ndash;&gt;-->
 
           </div>
           <div class="box-footer clearfix">

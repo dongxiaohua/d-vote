@@ -118,10 +118,22 @@ public class VoteController {
       log.error("投票失败", e);
       r.addFlashAttribute("error", "投票失败，请稍后重试");
     }
-    return "redirect:/v/voting?id=" + voteId;
+//    重定向到详情页
+    return "redirect:/v/detail?id=" + voteId;
   }
 
-  //TODO 指定投票的详情页面
+  /**
+   * 指定投票详情页面
+   * @param voteId
+   * @return
+   */
+  public String detail (@RequestParam int voteId) {
+    String voteName = voteMapper.findVoteNameById(voteId);
+    List<Integer> pollList = voteOptionMapper.findOptionPollByVoteId(voteId);
+
+
+    return "vote/detail";
+  }
 
 
 }

@@ -5,7 +5,6 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
-import spock.lang.Unroll
 
 /**
  * @author dongxiaohua
@@ -23,17 +22,17 @@ class VoteOptionMapperTest extends Specification {
     def vId = 2;
     def oPoll = 1341234
     expect:
-    println "===========" + voteOptionMapper.insert(oName,vId,oPoll)
+    println "===========" + voteOptionMapper.insert(oName, vId, oPoll)
   }
 
-  def "inserts" () {
+  def "inserts"() {
     expect:
-    println "=========" + voteOptionMapper.insert(oName, vId, oPoll)
+    println "=========" + voteOptionMapper.insert(optionName, voteId, optionPoll)
     where:
-    oName      | vId   | oPoll
-    "选项一"   | 3     | 0
-    "选项二"   | 3     | 0
-    "选项三"   | 3     | 0
+    optionName    | voteId | optionPoll
+    "选项一"      | 3      | 0
+    "选项二"      | 3      | 0
+    "选项三"      | 3      | 0
   }
 
 }

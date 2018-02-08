@@ -22,4 +22,7 @@ public interface VoteMapper {
   @Insert("INSERT INTO v_vote(vote_name,status,created_time,modify_time) VALUES(#{voteName},#{status},now(),now())")
   int insert(@Param("voteName") String voteName, @Param("status") String status);
 
+  @Select("SELECT vote_name FROM v_vote WHERE id=#{voteId}")
+  String findVoteNameById(@Param("voteId") int voteId);
+
 }
