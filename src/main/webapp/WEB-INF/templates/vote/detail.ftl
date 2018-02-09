@@ -4,10 +4,10 @@
 </#assign>
 <#assign breadcrumbContent>
 <section class="content-header">
-  <h1>创建投票</h1>
+  <h1>投票详情</h1>
   <ol class="breadcrumb">
     <li><a href="../"><i class="fa fa-dashboard"></i>任务主页</a></li>
-    <li><a href=""><i class="fa fa-dashboard"></i>创建投票</a></li>
+    <li><a href=""><i class="fa fa-dashboard"></i>详情</a></li>
   </ol>
 </section>
 </#assign>
@@ -19,22 +19,19 @@
         <div class="box-header with-border">
           <h3 class="box-title"></h3>
         </div>
-        <form class="form-horizontal" action="${ctx}/v/add" method="post" id="myForm" role="form" data-toggle="validator">
-          <div class="box-body">
-
-            <div id="container"></div>
-
-          </div>
-          <div class="box-footer clearfix">
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-2">
-                <button type="submit" class="btn btn-primary">执行刷库</button>
-                <button type="button" class="btn btn-default" onclick="history.back()">返回</button>
-              </div>
+        <div class="box-body">
+        <#--视图区域-->
+          <div id="container"></div>
+        </div>
+        <div class="box-footer clearfix">
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-2">
+              <span type="button" id="chartType" class="btn btn-info btn-sm">查看曲线图</span>
+              <span type="button" id="chartColor" class="btn btn-default btn-sm">更改颜色</span>
             </div>
-            <div class="clearfix"></div>
           </div>
-        </form>
+          <div class="clearfix"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -44,73 +41,108 @@
 <script src="${ctx}/static/js/validator.min.js"></script>
 <script src="${ctx}/static/js/highcharts.js"></script>
 <script>
+  $(document).ready(function () {
+    var voteNames = [];
+    var voteOptions = [];
+      <#if voteOptionList??>
+          <#list voteOptionList as voteOption>
+            voteNames.push('${voteOption.optionName}');
+            voteOptions.push(${voteOption.optionPoll});
+          </#list>
+      </#if>
+    var chartType = 'column';
+    var chartColor = '#3A9AFF';
+    chart(chartType, voteNames, voteOptions, chartColor);
+    $('#chartType').on('click', function () {
+      if (chartType === 'areaspline') {
+        chartType = 'column';
+        $('#chartType').html('查看曲线图')
+      } else {
+        chartType = 'areaspline';
+        $('#chartType').html('查看柱状图')
+      }
+      chart(chartType, voteNames, voteOptions, chartColor);
+    });
+    $('#chartColor').on('click', function () {
+      if (chartColor === "#3A9AFF") {
+        chartColor = '#47B648';
+        $('#chartType').removeClass('btn btn-info btn-sm');
+        $('#chartType').addClass('btn btn-success btn-sm');
+      } else if (chartColor === "#47B648") {
+        chartColor = '#F71F1F';
+        $('#chartType').removeClass('btn btn-success btn-sm');
+        $('#chartType').addClass('btn btn-danger btn-sm');
+      } else if (chartColor === '#F71F1F') {
+        chartColor = '#3A9AFF';
+        $('#chartType').removeClass('btn btn-danger btn-sm');
+        $('#chartType').addClass('btn btn-info btn-sm');
+      }
+      chart(chartType, voteNames, voteOptions, chartColor);
+    });
+  });
 
-  $('#container').highcharts({
-    chart: {
+  function chart(chartType, voteNames, voteOptions, chartColor) {
+    $('#container').highcharts({
+      chart: {
 //              柱状图
-      type: 'column'
-    },
-    title: {
-      text: '投票详情'
-    },
-    subtitle: {
-      text: '数据来源: 网络投票'
-    },
-    xAxis: {
+        type: chartType
+//      type:'line'
+      },
+      title: {
+        text: "${voteName!}"
+      },
+      subtitle: {
+        text: '数据来源: 网络投票'
+      },
+      xAxis: {
 //        type: 'datetime',
-      categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        categories: voteNames,
 //        categories:pNameList,
-      crosshair: true,
-      title: {
-        text: '选项名称'
-      }
-    },
-    yAxis: {
-      min: 0,
-      tickInterval:2, // 刻度值
-      title: {
-        text: '得票数量'
-      }
-    },
-    credits: {
-      enabled: false // 禁用版权信息
-    },
+        crosshair: true,
+        title: {
+          text: '选项名称'
+        }
+      },
+      yAxis: {
+        min: 0,
+        tickInterval: 2, // 刻度值
+        title: {
+          text: '得票数量'
+        }
+      },
+      credits: {
+        enabled: true, // 禁用版权信息
+        href: 'https://github.com/dongxiaohua/d-vote',
+        text: 'Copyright:dongxiaohua',
+        style: {
+          cursor: 'pointer',
+          color: '#909090',
+          fontSize: '10px'
+        }
+      },
 //      自定义提示内容------------将柱状图信息合并
-    tooltip: {
-      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-      '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-      footerFormat: '</table>',
-      shared: true,
-      useHTML: true
-    },
-    plotOptions: {
-      column: {
-        borderWidth: 0
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: '得票数',
+        data: voteOptions,
+        color: chartColor
       }
-    },
-    series: [{
-      name: '总Case数',
-      data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-      color:'#3A9AFF'
-    }, {
-      name: '成功Case数',
-      data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3],
-      color:'#47B648'
-    }, {
-      name: '失败Case数',
-      data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2],
-      color:'#F71F1F'
-    }, {
-      name: 'Skip数',
-      data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1],
-      color:'#1B1B1B'
-    }
-    ]
-  });
+      ]
+    });
+  }
 
-
-  });
 
 </script>
 </#assign>

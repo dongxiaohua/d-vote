@@ -9,7 +9,13 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface VoteHistoryMapper {
 
-  @Insert("INSERT INTO v_history(v_id,v_name,created_time,past_time) VALUES(#{vId},#{vName},now(),now())")
-  int insert(@Param("vId") int vId, @Param("vName") String vName);
+  /**
+   * 插入历史
+   * @param voteId 投票Id
+   * @param voteName 投票名称
+   * @return
+   */
+  @Insert("INSERT INTO v_history(vote_id,vote_name,created_time,past_time) VALUES(#{voteId},#{voteName},now(),now())")
+  int insert(@Param("voteId") int voteId, @Param("voteName") String voteName);
 
 }

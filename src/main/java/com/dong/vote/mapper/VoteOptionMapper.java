@@ -58,7 +58,7 @@ public interface VoteOptionMapper {
    * @param voteId
    * @return
    */
-  @Select("SELECT option_poll FROM v_option WHERE vote_id = #{voteId}")
-  List<Integer> findOptionPollByVoteId(@Param("voteId") int voteId);
+  @Select("SELECT * FROM v_option WHERE vote_id = #{voteId}")
+  List<VoteOption> findOptionPollByVoteId(@Param("voteId") int voteId);
 
 }

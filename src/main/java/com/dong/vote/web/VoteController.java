@@ -91,16 +91,16 @@ public class VoteController {
   /**
    * 参与投票
    *
-   * @param optionId 选中选项的id
+   * @param optionId    选中选项的id
    * @param otherOption 添加的选项名称
-   * @param voteId 投票Id
+   * @param voteId      投票Id
    * @param r
    * @return
    */
   @RequestMapping(value = "/voting", method = RequestMethod.POST)
   public String votingPost(@RequestParam int optionId, @RequestParam String otherOption, @RequestParam int voteId, RedirectAttributes r) {
     if (Strings.isNullOrEmpty(otherOption) && optionId == 0) {
-      r.addFlashAttribute("waring","您没有做出选择");
+      r.addFlashAttribute("waring", "您没有做出选择");
       return "redirect:/v/voting?id=" + voteId;
     }
     try {
@@ -118,20 +118,22 @@ public class VoteController {
       log.error("投票失败", e);
       r.addFlashAttribute("error", "投票失败，请稍后重试");
     }
-//    重定向到详情页
-    return "redirect:/v/detail?id=" + voteId;
+    //    重定向到详情页
+    return "redirect:/v/detail?voteId=" + voteId;
   }
 
   /**
    * 指定投票详情页面
+   *
    * @param voteId
    * @return
    */
-  public String detail (@RequestParam int voteId) {
+  @RequestMapping(value = "/detail", method = RequestMethod.GET)
+  public String detail(@RequestParam int voteId, Model model) {
     String voteName = voteMapper.findVoteNameById(voteId);
-    List<Integer> pollList = voteOptionMapper.findOptionPollByVoteId(voteId);
-
-
+    List<VoteOption> voteOptionList = voteOptionMapper.findOptionPollByVoteId(voteId);
+    model.addAttribute("voteName",voteName);
+    model.addAttribute("voteOptionList",voteOptionList);
     return "vote/detail";
   }
 
