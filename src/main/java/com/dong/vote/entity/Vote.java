@@ -14,7 +14,6 @@ import java.util.Date;
  * @author dongxiaohua
  * @date 2017/12/1
  */
-@Getter
 @Builder
 @Data
 @NoArgsConstructor
