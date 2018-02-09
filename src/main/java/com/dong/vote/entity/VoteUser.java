@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * 用户表
  *
@@ -21,6 +23,7 @@ public class VoteUser {
   private int id;
   private String userName;
   private String passWord;
+  private Date voteTime;
   private int limit;
 
 }

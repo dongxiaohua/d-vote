@@ -24,4 +24,5 @@ public class VoteOption {
   private int voteId;
   private int optionPoll;
   private Date createdTime;
+  private Date modifyTime;
 }

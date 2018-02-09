@@ -6,7 +6,7 @@
 <section class="content-header">
   <h1>投票</h1>
   <ol class="breadcrumb">
-    <li><a href="../"><i class="fa fa-dashboard"></i>任务主页</a></li>
+    <li><a href="../../"><i class="fa fa-dashboard"></i>主页</a></li>
     <li><a href=""><i class="fa fa-dashboard"></i>投票</a></li>
   </ol>
 </section>
@@ -15,10 +15,24 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
+      <#--最新投票展示-->
+      <div class="box box-info">
+        <h6 class="btn btn-info btn-xs">热门投票</h6>
+        <table id="datatable" class="table table-hover table-bordered" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th>${vote.voteName}</th>
+            <th>${vote.voteName}</th>
+            <th>${vote.voteName}</th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+        <#--投票-->
       <div class="box box-info">
         <div class="box-header with-border">
           <h4 class="box-title">当前投票名称:</h4>
-          <h3 class="box-title btn btn-info">${vote.voteName!}</h3>
+          <button value="${vote.id!}" class="box-title btn btn-default" id="voteDetail">${vote.voteName!}</button>
         </div>
         <form class="form-horizontal" action="${ctx}/v/voting" method="post" id="myForm" role="form" data-toggle="validator">
           <div class="box-body">
@@ -61,10 +75,12 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                 class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="stopModalLabel">提示信息</h4>
+        <h4 class="modal-title" id="stopModalLabel">提示信息&nbsp;
+          <img src="${ctx}/static/images/jg.png" style="width: 25px;height: 20px">
+        </h4>
       </div>
       <div class="modal-body">
-        请选择或添加新选项！
+        请添加新选项！
       </div>
       <div class="modal-footer">
       </div>
@@ -106,6 +122,15 @@
       };
       httpPost("${ctx}/v/voting",dataObject)
     });
+
+    /**
+     * 点击名称进入详情页
+     */
+    $('#voteDetail').on('click',function () {
+      var voteId = this.value;
+      window.location.href="${ctx}/v/detail?voteId=" + voteId;
+    });
+
   });
 
 //  js发送post请求

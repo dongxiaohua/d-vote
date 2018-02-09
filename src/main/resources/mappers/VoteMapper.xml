@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fxiaoke.transfer.mapper.ScanLogMapper">
-  <insert id="batchUpsert">
-    INSERT INTO scan_log ("name", "topic", "url", "modify_time") VALUES
-    <foreach collection="items" item="i" index="index" open="" separator="," close="">
-      (#{i.name}, #{i.topic}, #{i.url}, #{i.modifyTime})
+<mapper namespace="com.dong.vote.mapper.VoteMapper">
+  <insert id="batchInsert">
+    INSERT INTO v_vote (vote_name,status,created_time,modify_time) VALUES
+    <foreach collection="votes" item="v" index="index" open="" separator="," close="">
+      (#{v.voteName}, #{v.status}, now(), now())
     </foreach>
-    ON CONFLICT("name", "url") DO UPDATE SET topic=EXCLUDED.topic, modify_time=EXCLUDED.modify_time
   </insert>
 </mapper>

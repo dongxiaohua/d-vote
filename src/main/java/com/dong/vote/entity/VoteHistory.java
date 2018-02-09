@@ -21,7 +21,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class VoteHistory {
   private int id;
-  private int voteNum;
+  private int voteId;
   private String voteName;
   private Date createdTime;
   private Date pastTime;

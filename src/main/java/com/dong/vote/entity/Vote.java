@@ -24,5 +24,5 @@ public class Vote {
   private String voteName;
   private String status;
   private Date createdTime;
-
+  private Date modifyTime;
 }

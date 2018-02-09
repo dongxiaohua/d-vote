@@ -17,7 +17,7 @@
             <a href="${ctx}/v/list"><i class="fa fa-list-alt"></i> 最新投票列表</a>
           </li>
           <li>
-            <a href="${ctx}/home"><i class="fa fa-history"></i> 历史投票</a>
+            <a href="${ctx}/history/list"><i class="fa fa-history"></i> 历史投票</a>
           </li>
         </ul>
       </li>

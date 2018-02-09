@@ -18,8 +18,16 @@ public class VoteOptionServiceImpl implements VoteOptionService {
   @Resource
   private VoteOptionMapper voteOptionMapper;
 
+  /**
+   * 插入新选项
+   *
+   * @param voteOption
+   * @return
+   */
   @Override
   public int insertOption(VoteOption voteOption) {
-    return voteOptionMapper.insert(voteOption.getOptionName(),voteOption.getVoteId(),voteOption.getOptionPoll());
+    return voteOptionMapper.insert(voteOption.getOptionName(), voteOption.getVoteId(), voteOption.getOptionPoll());
   }
+
+
 }

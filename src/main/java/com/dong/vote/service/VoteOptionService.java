@@ -8,6 +8,11 @@ import com.dong.vote.entity.VoteOption;
  */
 public interface VoteOptionService {
 
+  /**
+   * 插入新选项
+   * @param voteOption
+   * @return
+   */
   int insertOption(VoteOption voteOption);
 
 }
