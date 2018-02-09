@@ -12,5 +12,4 @@ import spock.lang.Specification
 @Slf4j
 class VoteServiceTest extends Specification {
 
-
 }
