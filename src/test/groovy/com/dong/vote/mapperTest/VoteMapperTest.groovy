@@ -21,10 +21,13 @@ class VoteMapperTest extends Specification {
 
   def "insert-test"() {
     given:
-    def voteName = "时间测试"
-    def status = "initiate"
+    def vote = new Vote()
+    vote.voteName = "测试新插入"
+    vote.status = "initiate"
+    vote.pastTime = new Date()
     expect:
-    println "============" + voteMapper.insert(voteName, status)
+    println "============" + voteMapper.insert(vote)
+    println(vote.id)
   }
 
   def "findAll-test"() {

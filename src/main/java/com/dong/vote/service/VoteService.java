@@ -11,4 +11,6 @@ import java.util.List;
 public interface VoteService {
 
   int batchInsert(List<Vote> voteList);
+
+  int insert(Vote vote);
 }

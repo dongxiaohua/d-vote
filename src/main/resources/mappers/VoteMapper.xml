@@ -7,4 +7,9 @@
       (#{v.voteName}, #{v.status}, now(), now())
     </foreach>
   </insert>
+
+  <insert id="insert" keyProperty="id"  useGeneratedKeys="true" parameterType="com.dong.vote.entity.Vote">
+    INSERT INTO v_vote(vote_name,status,created_time,modify_time,past_time)
+    VALUES(#{voteName},#{status},now(),now(),#{pastTime})
+  </insert>
 </mapper>

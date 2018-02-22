@@ -1,5 +1,6 @@
 package com.dong.vote.mapper;
 
+import com.dong.vote.entity.Vote;
 import com.dong.vote.entity.VoteOption;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -60,5 +61,12 @@ public interface VoteOptionMapper {
    */
   @Select("SELECT * FROM v_option WHERE vote_id = #{voteId}")
   List<VoteOption> findOptionPollByVoteId(@Param("voteId") int voteId);
+
+  /**
+   * 批量插入选项
+   * @param voteOptionList
+   * @return
+   */
+  int batchInsert(@Param("options") List<VoteOption> voteOptionList);
 
 }

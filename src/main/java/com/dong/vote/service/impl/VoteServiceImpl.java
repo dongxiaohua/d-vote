@@ -29,5 +29,16 @@ public class VoteServiceImpl implements VoteService {
     return voteMapper.batchInsert(voteList);
   }
 
+  /**
+   * 插入投票并返回Id
+   * @param vote
+   * @return
+   */
+  @Override
+  public int insert(Vote vote) {
+    voteMapper.insert(vote);
+    return vote.getId();
+  }
+
 
 }

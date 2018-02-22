@@ -1,6 +1,7 @@
 <#assign active_nav="vote-add">
 <#assign headContent>
-<link href="//static.foneshare.cn/oss/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+<link href="${ctx}/static/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+<link href="${ctx}/static/css/fileinput.css" rel="stylesheet" type="text/css"/>
 </#assign>
 <#assign breadcrumbContent>
 <section class="content-header">
@@ -19,22 +20,43 @@
         <div class="box-header with-border">
           <h3 class="box-title"></h3>
         </div>
-        <form class="form-horizontal" action="${ctx}/v/add" method="post" id="myForm" role="form" data-toggle="validator">
+        <form class="form-horizontal" action="${ctx}/admin/add" method="post" id="myForm" role="form" data-toggle="validator">
           <div class="box-body">
-
             <div class="form-group">
-              <label for="eids" class="col-sm-2 control-label">租户</label>
+              <label for="voteName" class="col-sm-2 control-label">投票名称</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="hook" name="hook" value="" placeholder="必填" required>
+                <input type="text" class="form-control" id="voteName" name="voteName" value="" placeholder="必填" required>
                 <div class="help-block with-errors"></div>
               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="pastTime" class="col-sm-2 control-label">过期时间</label>
+              <div class="col-sm-4">
+                <input type="text" id="pastTime" name="pastTime" onfocus="WdatePicker({onpicking: function(dp) {
+                                         return false
+//                    if (!confirm('日期框原来的值为: ' + dp.cal.getDateStr() + ', 要用新选择的值:' + dp.cal.getNewDateStr() + '覆盖吗?')) {
+//                                        return true;
+//                                    }
+                                }})" class="form-control Wdate" _vimium-has-onclick-listener="" placeholder="默认2天过期">
+              </div>
+            </div>
+
+            <br>
+            <div class="form-group" id="options">
+              <label for="voteName" class="col-sm-2 control-label">选项名称</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="optionName1" name="optionName1" value="" placeholder="必填" required>
+                <div class="help-block with-errors"></div>
+              </div>
+              <button type="button" id="addOption" style="margin-left: 50%" class="btn btn-info btn-xs">添加选项</button>
             </div>
 
           </div>
           <div class="box-footer clearfix">
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-2">
-                <button type="submit" class="btn btn-primary">执行刷库</button>
+                <button type="button" id="sub" class="btn btn-primary">创建投票</button>
                 <button type="button" class="btn btn-default" onclick="history.back()">返回</button>
               </div>
             </div>
@@ -47,62 +69,62 @@
 </section>
 </#assign>
 <#assign scriptContent>
-    <script src="//static.foneshare.cn/oss/jquery/bootstrap-select.min.js"></script>
-<script src="//static.foneshare.cn/oss/bootstrap-3.3.6/js/validator.min.js"></script>
+<script src="${ctx}/static/js/validator.min.js"></script>
+<script src="${ctx}/static/js/fileinput.js"></script>
+<script src="http://yanshi.sucaihuo.com/jquery/1/177/demo/My97DatePicker/WdatePicker.js"></script>
 <script>
-
-  <#--if ('${biz}' === "foneshare") {-->
-    <#--$('#selectBiz').addClass('hide')-->
-  <#--}-->
-
-  //        文档上传
-  /**
-   * 上传函数
-   * @param fileInput DOM对象
-   * @param callback 回调函数
-   */
-  var getFileContent = function (fileInput, callback) {
-    //限制文件类型
-    var fileName = $('#upload').prop('files')[0].name;
-    var index1 = fileName.lastIndexOf(".");
-    var index2 = fileName.length;
-    var fileType = fileName.substring(index1, index2);
-//            限制文件大小
-    var fileSize = $('#upload').prop('files')[0].size;
-    if (fileType !== '.txt' && fileType !== '.sql') {
-      alert('只允许上传".txt"或".sql"文件');
-      return;
-    } else if (fileSize > 2097152) {
-      alert('文件不可超过2M');
-      return;
+  var num = 1;
+  $('#addOption').on('click', function () {
+    num++;
+    var optionString = '<div class="form-group">' +
+            '<label for="voteName" class="col-sm-2 control-label"></label>' +
+            '<div class="col-sm-4">' +
+            '<input type="text" class="form-control" id="optionName' + num + '" name="voteName' + num + '" value="" placeholder="必填" required>' +
+            '<div class="help-block with-errors"></div>' +
+            '</div>' +
+            '</div>';
+    $('#options').append(optionString)
+  });
+  //    提交按钮
+  $('#sub').on('click', function () {
+    var voteNamre = $('#voteName').val();
+    var pastTime = $('#pastTime').val();
+    var options = [];
+    for (var i = 1; i < num + 1; i++) {
+        var optionName = $('#optionName' + i).val();
+        if (optionName !== undefined) {
+          options.push(optionName);
+        } else {
+            continue
+        }
     }
-    if (fileInput.files && fileInput.files.length > 0 && fileInput.files[0].size > 0) {
-      //下面这一句相当于JQuery的：var file =$("#upload").prop('files')[0];
-      var file = fileInput.files[0];
-      if (window.FileReader) {
-        var reader = new FileReader();
-        reader.onloadend = function (evt) {
-          if (evt.target.readyState === FileReader.DONE) {
-            callback(evt.target.result);
-          }
-        };
-        // 包含中文内容用gbk编码
-        reader.readAsText(file, 'utf-8');
-      }
-    }
-  };
-  /**
-   * upload内容变化时载入内容
-   */
-//  document.getElementById('upload').onchange = function () {
-//    var content = document.getElementById('sql');
-//
-//    getFileContent(this, function (str) {
-//      content.value = str;
-//    });
-//  };
-  //        /文档上传end
+    var dataObject = {
+      voteName: voteNamre,
+      pastTime: pastTime,
+      options: options
+    };
+    console.log(dataObject);
+  httpPost("${ctx}/admin/add", dataObject);
+  });
 
+  function httpPost(URL, PARAMS) {
+    var temp = document.createElement("form");
+    temp.action = URL;
+    temp.method = "post";
+    temp.style.display = "none";
+
+    for (var x in PARAMS) {
+      var opt = document.createElement("textarea");
+      opt.name = x;
+      opt.value = PARAMS[x];
+      temp.appendChild(opt);
+    }
+
+    document.body.appendChild(temp);
+    temp.submit();
+
+    return temp;
+  }
 
 </script>
 </#assign>

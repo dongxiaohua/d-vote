@@ -1,7 +1,6 @@
 package com.dong.vote.mapper;
 
 import com.dong.vote.entity.Vote;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -17,6 +16,7 @@ public interface VoteMapper {
 
   /**
    * 创建投票
+   *
    * @param voteList
    * @return
    */
@@ -42,12 +42,10 @@ public interface VoteMapper {
   /**
    * 创建投票
    *
-   * @param voteName 名称
-   * @param status 状态
+   * @param vote
    * @return
    */
-  @Insert("INSERT INTO v_vote(vote_name,status,created_time,modify_time) VALUES(#{voteName},#{status},now(),now())")
-  int insert(@Param("voteName") String voteName, @Param("status") String status);
+  int insert(Vote vote);
 
   /**
    * 根据ID查询投票名称

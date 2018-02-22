@@ -19,9 +19,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Vote {
-  private int id;
+  private Integer id;
   private String voteName;
   private String status;
   private Date createdTime;
   private Date modifyTime;
+  private Date pastTime;
 }

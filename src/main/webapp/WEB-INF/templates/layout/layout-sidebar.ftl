@@ -33,10 +33,10 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="${ctx}/unauthorized"><i class="fa fa-circle-o"></i> 列表</a>
+            <a href="${ctx}/admin/list"><i class="fa fa-circle-o"></i> 列表</a>
           </li>
           <li>
-            <a href="${ctx}/unauthorized"><i class="fa fa-circle-o"></i> 创建投票</a>
+            <a href="${ctx}/admin/add"><i class="fa fa-circle-o"></i> 创建投票</a>
           </li>
         </ul>
       </li>

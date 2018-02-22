@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dong.vote.mapper.VoteOptionMapper">
+  <insert id="batchInsert" >
+    INSERT INTO v_option (option_name,vote_id,option_poll, created_time,modify_time) VALUES
+    <foreach collection="options" item="o" index="index" open="" separator="," close="">
+      (o.optionName,o.voteId,o.optionPoll,now(),now())
+    </foreach>
+  </insert>
+</mapper>
