@@ -24,10 +24,37 @@
           <div class="box-body">
 
             <div class="form-group">
-              <label for="eids" class="col-sm-2 control-label">租户</label>
+              <label for="id" class="col-sm-2 control-label">投票ID</label>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="hook" name="hook" value="" placeholder="必填" required>
+                <input type="text" class="form-control" id="id" name="id" value="${vote.id!}" placeholder="必填" readonly>
                 <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="voteName" class="col-sm-2 control-label">投票名称</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="voteName" name="voteName" value="${vote.voteName!}" placeholder="必填" required>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="pastTime" class="col-sm-2 control-label">过期时间</label>
+              <div class="col-sm-4">
+                <input type="text" id="pastTime" name="pastTime" onfocus="WdatePicker({minDate:new Date(),onpicking: function(dp) {
+                                         return false
+                                }})" class="form-control Wdate" _vimium-has-onclick-listener="" value="${(vote.pastTime?string("yyyy-MM-dd"))!}" placeholder="默认2天过期">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="id" class="col-sm-2 control-label">投票选项</label>
+              <div class="col-sm-4" id="options">
+                <#list vote.optionNameList as optionName>
+                  <input type="text" class="form-control" id="" name="" value="${optionName!}" placeholder="必填" >
+                  <div class="help-block with-errors"></div>
+                </#list>
               </div>
             </div>
 
@@ -35,8 +62,12 @@
           <div class="box-footer clearfix">
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-2">
-                <button type="submit" class="btn btn-primary">执行刷库</button>
+                <button type="submit" class="btn btn-primary">确认提交</button>
                 <button type="button" class="btn btn-default" onclick="history.back()">返回</button>
+              </div>
+              <div class="col-sm-offset-2 col-sm-3">
+                <#--<a href="" class="btn btn-success btn-xs">复制新建</a>-->
+                <a class="btn btn-xs btn-danger delete" data-toggle="modal" data-target="#myModal">删除</a>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -46,64 +77,28 @@
     </div>
   </div>
 </section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">危险</h4>
+      </div>
+      <div class="modal-body">删除之后不可恢复!!!</div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
+        <a type="button" href="${ctx}/admin/delete?id=${vote.id!}" class="btn btn-danger actionDelete">确认删除</a>
+      </div>
+    </div>
+  </div>
+</div>
 </#assign>
 <#assign scriptContent>
 <script src="${ctx}/static/js/validator.min.js"></script>
 <script src="${ctx}/static/js/fileinput.js"></script>
+
 <script>
-
-  <#--if ('${biz}' === "foneshare") {-->
-    <#--$('#selectBiz').addClass('hide')-->
-  <#--}-->
-
-  //        文档上传
-  /**
-   * 上传函数
-   * @param fileInput DOM对象
-   * @param callback 回调函数
-   */
-  var getFileContent = function (fileInput, callback) {
-    //限制文件类型
-    var fileName = $('#upload').prop('files')[0].name;
-    var index1 = fileName.lastIndexOf(".");
-    var index2 = fileName.length;
-    var fileType = fileName.substring(index1, index2);
-//            限制文件大小
-    var fileSize = $('#upload').prop('files')[0].size;
-    if (fileType !== '.txt' && fileType !== '.sql') {
-      alert('只允许上传".txt"或".sql"文件');
-      return;
-    } else if (fileSize > 2097152) {
-      alert('文件不可超过2M');
-      return;
-    }
-    if (fileInput.files && fileInput.files.length > 0 && fileInput.files[0].size > 0) {
-      //下面这一句相当于JQuery的：var file =$("#upload").prop('files')[0];
-      var file = fileInput.files[0];
-      if (window.FileReader) {
-        var reader = new FileReader();
-        reader.onloadend = function (evt) {
-          if (evt.target.readyState === FileReader.DONE) {
-            callback(evt.target.result);
-          }
-        };
-        // 包含中文内容用gbk编码
-        reader.readAsText(file, 'utf-8');
-      }
-    }
-  };
-  /**
-   * upload内容变化时载入内容
-   */
-//  document.getElementById('upload').onchange = function () {
-//    var content = document.getElementById('sql');
-//
-//    getFileContent(this, function (str) {
-//      content.value = str;
-//    });
-//  };
-  //        /文档上传end
-
 
 </script>
 </#assign>

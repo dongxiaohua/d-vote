@@ -4,7 +4,7 @@
   <insert id="batchInsert" >
     INSERT INTO v_option (option_name,vote_id,option_poll, created_time,modify_time) VALUES
     <foreach collection="options" item="o" index="index" open="" separator="," close="">
-      (o.optionName,o.voteId,o.optionPoll,now(),now())
+      (#{o.optionName},#{o.voteId},#{o.optionPoll},now(),now())
     </foreach>
   </insert>
 </mapper>

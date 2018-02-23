@@ -72,7 +72,7 @@
         "targets": 5,
         "render": function (data, type, row, meta) {
           if (type === 'display') {
-            return "<a href='${ctx}/admin/edit/?id=" + data + "'>编辑</a>";
+            return "<a href='${ctx}/admin/edit?id=" + data + "'>编辑</a>";
           }
           return data;
         }

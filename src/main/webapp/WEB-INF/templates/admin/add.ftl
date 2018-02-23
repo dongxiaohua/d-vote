@@ -33,7 +33,7 @@
             <div class="form-group">
               <label for="pastTime" class="col-sm-2 control-label">过期时间</label>
               <div class="col-sm-4">
-                <input type="text" id="pastTime" name="pastTime" onfocus="WdatePicker({onpicking: function(dp) {
+                <input type="text" id="pastTime" name="pastTime" onfocus="WdatePicker({minDate:new Date(),onpicking: function(dp) {
                                          return false
 //                    if (!confirm('日期框原来的值为: ' + dp.cal.getDateStr() + ', 要用新选择的值:' + dp.cal.getNewDateStr() + '覆盖吗?')) {
 //                                        return true;
@@ -87,26 +87,28 @@
   });
   //    提交按钮
   $('#sub').on('click', function () {
-    var voteNamre = $('#voteName').val();
     var pastTime = $('#pastTime').val();
+    var voteNamre = $('#voteName').val();
     var options = [];
     for (var i = 1; i < num + 1; i++) {
-        var optionName = $('#optionName' + i).val();
-        if (optionName !== undefined) {
-          options.push(optionName);
-        } else {
-            continue
-        }
+      var optionName = $('#optionName' + i).val();
+      if (optionName !== undefined) {
+        options.push(optionName);
+      } else {
+        continue
+      }
     }
     var dataObject = {
       voteName: voteNamre,
       pastTime: pastTime,
       options: options
     };
-    console.log(dataObject);
-  httpPost("${ctx}/admin/add", dataObject);
+    httpPost("${ctx}/admin/add", dataObject);
   });
 
+  //  检测过期时间
+
+  //  js发送post请求方法
   function httpPost(URL, PARAMS) {
     var temp = document.createElement("form");
     temp.action = URL;

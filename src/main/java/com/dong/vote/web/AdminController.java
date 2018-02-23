@@ -3,6 +3,8 @@ package com.dong.vote.web;
 import com.dong.vote.entity.Vote;
 import com.dong.vote.entity.VoteOption;
 import com.dong.vote.mapper.VoteMapper;
+import com.dong.vote.mapper.VoteOptionMapper;
+import com.dong.vote.service.VoteService;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
@@ -33,6 +35,10 @@ public class AdminController {
 
   @Autowired
   private VoteMapper voteMapper;
+  @Autowired
+  private VoteService voteService;
+  @Autowired
+  private VoteOptionMapper voteOptionMapper;
 
 
   /**
@@ -79,7 +85,6 @@ public class AdminController {
    */
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public String addGet(Model model) {
-
     return "admin/add";
   }
 
@@ -94,14 +99,13 @@ public class AdminController {
       SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
       Date pastTimes = dtf.parse(pastTime);
       Vote vote = Vote.builder().voteName(voteName).status("initiate").pastTime(pastTimes).build();
-      //todo 插入投票并返回id
-      int voteId = 1;
+      Integer voteId = voteService.insert(vote);
       List<String> optionNames = Splitter.on(CharMatcher.anyOf(",\n\t")).trimResults().omitEmptyStrings().splitToList(options);
       List<VoteOption> optionList = Lists.newArrayList();
-      optionNames.forEach(optionName -> {
-        optionList.add(VoteOption.builder().optionName(optionName).voteId(voteId).optionPoll(0).build());
-      });
-      return "admin/list";
+      optionNames.forEach(optionName -> optionList.add(VoteOption.builder().optionName(optionName).voteId(voteId).optionPoll(0).build()));
+      voteOptionMapper.batchInsert(optionList);
+      r.addFlashAttribute("success", "创建成功!投票名称为：" + voteName);
+      return "redirect:/admin/list";
     } catch (Exception e) {
       log.error("创建投票失败");
       r.addFlashAttribute("error", "创建投票失败");
@@ -112,11 +116,14 @@ public class AdminController {
   /**
    * 跳转编辑
    *
+   * @param id    投票ID
+   * @param model
    * @return
    */
   @RequestMapping(value = "/edit", method = RequestMethod.GET)
-  public String editGet(@RequestParam int voteId, Model model) {
-
+  public String editGet(@RequestParam int id, Model model) {
+    Vote vote = voteService.findVoteAndOptionByVoteId(id);
+    model.addAttribute("vote", vote);
     return "admin/edit";
   }
 
@@ -129,6 +136,25 @@ public class AdminController {
   public String edit() {
 
     return "";
+  }
+
+  /**
+   * 删除指定投票
+   *
+   * @param id 投票ID
+   * @param r
+   * @return
+   */
+  @RequestMapping(value = "/delete")
+  public String delete(@RequestParam Integer id, RedirectAttributes r) {
+    try {
+      if (voteService.deleteVote(id) == 1) {
+        r.addFlashAttribute("success", "删除成功!投票ID=" + id);
+      }
+    } catch (Exception e) {
+      r.addFlashAttribute("error", "删除失败！投票ID=" + id);
+    }
+    return "redirect:/admin/list";
   }
 
 }

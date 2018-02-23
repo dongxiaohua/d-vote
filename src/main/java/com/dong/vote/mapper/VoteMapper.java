@@ -1,6 +1,7 @@
 package com.dong.vote.mapper;
 
 import com.dong.vote.entity.Vote;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -65,5 +66,13 @@ public interface VoteMapper {
    */
   @Update("UPDATE v_vote SET status = #{status},modify_time = now() WHERE id = #{voteId}")
   int update(@Param("voteId") int voteId, @Param("status") String status);
+
+  /**
+   * 根据id删除
+   * @param id 投票ID
+   * @return
+   */
+  @Delete("DELETE FROM v_vote WHERE id = #{id}")
+  int deleteById (@Param("id") Integer id);
 
 }

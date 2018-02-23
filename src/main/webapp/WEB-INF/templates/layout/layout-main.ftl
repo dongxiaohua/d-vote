@@ -65,6 +65,7 @@ ${headContent}
 <script src="${ctx}/static/js/bootstrap-select.min.js"></script>
 <script src="${ctx}/static/js/dataTables.checkboxes.min.js"></script>
 <script src="${ctx}/static/js/global.js"></script>
+<script src="http://yanshi.sucaihuo.com/jquery/1/177/demo/My97DatePicker/WdatePicker.js"></script>
 <#--<script src="${ctx}/static/js/app.js"></script>-->
 
 ${scriptContent}

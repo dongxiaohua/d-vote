@@ -126,6 +126,12 @@
       <artifactId>mybatis-spring</artifactId>
       <version>1.2.4</version>
     </dependency>
+    <!--@Transient注解使用-->
+    <dependency>
+      <groupId>com.distelli.persistence</groupId>
+      <artifactId>persistence-api</artifactId>
+      <version>3.5.4</version>
+    </dependency>
     <!--fastjson-->
     <dependency>
       <groupId>com.alibaba</groupId>

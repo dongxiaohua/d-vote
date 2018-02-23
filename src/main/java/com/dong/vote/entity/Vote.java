@@ -3,10 +3,11 @@ package com.dong.vote.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 /**
  * v_vote 投票表
@@ -25,4 +26,6 @@ public class Vote {
   private Date createdTime;
   private Date modifyTime;
   private Date pastTime;
+  @Transient
+  private List<String> optionNameList;
 }

@@ -1,6 +1,8 @@
 package com.dong.vote.mapperTest
 
+import com.dong.vote.entity.VoteOption
 import com.dong.vote.mapper.VoteOptionMapper
+import com.google.common.collect.Lists
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
@@ -33,6 +35,18 @@ class VoteOptionMapperTest extends Specification {
     "选项一"      | 3      | 0
     "选项二"      | 3      | 0
     "选项三"      | 3      | 0
+  }
+
+  def "batchInsert-test" () {
+    given:
+    def optionList = Lists.newArrayList()
+    def option = new VoteOption()
+    option.setOptionName("测试批量插入")
+    option.setVoteId(15)
+    option.setOptionPoll(0)
+    optionList.add(option)
+    expect:
+    println "============" + voteOptionMapper.batchInsert(optionList)
   }
 
 }

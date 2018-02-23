@@ -1,7 +1,7 @@
 package com.dong.vote.mapper;
 
-import com.dong.vote.entity.Vote;
 import com.dong.vote.entity.VoteOption;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -51,11 +51,20 @@ public interface VoteOptionMapper {
    * @param voteId     投票ID
    * @return
    */
-  @Select("SELECT count(*) FROM vote_option WHERE option_name = #{optionName} AND vote_id = #{voteId}")
+  @Select("SELECT count(*) FROM v_option WHERE option_name = #{optionName} AND vote_id = #{voteId}")
   int checkIn(@Param("optionName") String optionName, @Param("voteId") int voteId);
 
   /**
+   * 查询指定投票ID下选项数
+   * @param voteId
+   * @return
+   */
+  @Select("SELECT count(*) FROM v_option WHERE vote_id = #{voteId}")
+  int findOptionNumByVoteId(@Param("voteId") Integer voteId);
+
+  /**
    * 查询投票的所有选项的得票数
+   *
    * @param voteId
    * @return
    */
@@ -64,9 +73,19 @@ public interface VoteOptionMapper {
 
   /**
    * 批量插入选项
+   *
    * @param voteOptionList
    * @return
    */
   int batchInsert(@Param("options") List<VoteOption> voteOptionList);
+
+  /**
+   * 根据投票ID删除选项
+   *
+   * @param voteId 投票ID
+   * @return
+   */
+  @Delete("DELETE FROM v_option WHERE vote_id = #{voteId}")
+  int deleteByVoteId(@Param("voteId") Integer voteId);
 
 }
