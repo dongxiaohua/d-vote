@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -105,7 +106,7 @@ public class AdminController {
       optionNames.forEach(optionName -> optionList.add(VoteOption.builder().optionName(optionName).voteId(voteId).optionPoll(0).build()));
       voteOptionMapper.batchInsert(optionList);
       r.addFlashAttribute("success", "创建成功!投票名称为：" + voteName);
-      return "redirect:/admin/list";
+      return "redirect:/v/voting?id=" + vote.getId();
     } catch (Exception e) {
       log.error("创建投票失败");
       r.addFlashAttribute("error", "创建投票失败");
@@ -123,6 +124,7 @@ public class AdminController {
   @RequestMapping(value = "/edit", method = RequestMethod.GET)
   public String editGet(@RequestParam int id, Model model) {
     Vote vote = voteService.findVoteAndOptionByVoteId(id);
+    model.addAttribute("optionList", vote.getOptionList());
     model.addAttribute("vote", vote);
     return "admin/edit";
   }
@@ -133,9 +135,18 @@ public class AdminController {
    * @return
    */
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public String edit() {
-
-    return "";
+  public String edit(@Valid Vote vote, RedirectAttributes r) {
+    try {
+//      if (voteService.updateVote(vote) == 1) {
+//        r.addFlashAttribute("success","编辑成功");
+//      } else {
+//        r.addFlashAttribute("error","修改失败");
+//      }
+    } catch (Exception e) {
+      log.error("编辑失败",e);
+      r.addFlashAttribute("error","编辑失败");
+    }
+    return "redirect:/admin/edit?id=" + vote.getId();
   }
 
   /**

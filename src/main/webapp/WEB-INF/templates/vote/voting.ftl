@@ -22,9 +22,9 @@
         <table id="datatable" class="table table-hover table-bordered" cellspacing="0" width="100%">
           <thead>
           <tr>
-            <th>${vote.voteName}</th>
-            <th>${vote.voteName}</th>
-            <th>${vote.voteName}</th>
+            <th>${vote.voteName!}</th>
+            <th>${vote.voteName!}</th>
+            <th>${vote.voteName!}</th>
           </tr>
           </thead>
         </table>

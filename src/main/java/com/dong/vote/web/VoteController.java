@@ -80,8 +80,12 @@ public class VoteController {
    * @return
    */
   @RequestMapping(value = "/voting", method = RequestMethod.GET)
-  public String voting(@RequestParam int id, Model model) {
+  public String voting(@RequestParam int id, Model model, RedirectAttributes r) {
     Vote vote = voteMapper.findVoteById(id);
+    if (vote == null) {
+      r.addFlashAttribute("waring", "出现错误！投票不存在,id=" + id);
+      return "redirect:/v/list";
+    }
     List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(id);
     model.addAttribute("vote", vote);
     model.addAttribute("optionList", optionList);
@@ -132,8 +136,8 @@ public class VoteController {
   public String detail(@RequestParam int voteId, Model model) {
     String voteName = voteMapper.findVoteNameById(voteId);
     List<VoteOption> voteOptionList = voteOptionMapper.findOptionPollByVoteId(voteId);
-    model.addAttribute("voteName",voteName);
-    model.addAttribute("voteOptionList",voteOptionList);
+    model.addAttribute("voteName", voteName);
+    model.addAttribute("voteOptionList", voteOptionList);
     return "vote/detail";
   }
 

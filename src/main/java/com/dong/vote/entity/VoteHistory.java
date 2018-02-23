@@ -3,7 +3,6 @@ package com.dong.vote.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -19,9 +18,11 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VoteHistory {
-  private int id;
-  private int voteId;
+  private Integer id;
+  private Integer voteId;
   private String voteName;
-  private Date createdTime;
+  private String maxOption;
+  private Integer maxPoll;
+  private Date voteCreatedTime;
   private Date pastTime;
 }

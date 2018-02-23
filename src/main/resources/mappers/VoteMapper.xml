@@ -8,8 +8,15 @@
     </foreach>
   </insert>
 
-  <insert id="insert" keyProperty="id"  useGeneratedKeys="true" parameterType="com.dong.vote.entity.Vote">
+  <!--keyProperty="id"属性将当前插入数据的id映射到了对象中-->
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.dong.vote.entity.Vote">
     INSERT INTO v_vote(vote_name,status,created_time,modify_time,past_time)
     VALUES(#{voteName},#{status},now(),now(),#{pastTime})
   </insert>
+
+  <update id="updateVote">
+    UPDATE v_vote SET vote_name = #{voteName}, status=#{status},past_time = #{pastTime}, modify_time=NOW()
+    WHERE id = #{id}
+  </update>
+
 </mapper>

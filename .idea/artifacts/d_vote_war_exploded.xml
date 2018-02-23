@@ -58,6 +58,7 @@
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
           <element id="library" level="project" name="Maven: com.distelli.persistence:cred-api:3.5.4" />
           <element id="library" level="project" name="Maven: com.distelli.persistence:crypto-api:3.5.4" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.0.Final" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:sources:1.2.35" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.18" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.4" />

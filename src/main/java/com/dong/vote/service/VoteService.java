@@ -34,4 +34,12 @@ public interface VoteService {
    * @return
    */
   int deleteVote (Integer voteId);
+
+  /**
+   * 修改投票及选项
+   * @param vote
+   * @return
+   */
+  int updateVote(Vote vote);
+
 }

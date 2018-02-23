@@ -49,4 +49,14 @@ class VoteOptionMapperTest extends Specification {
     println "============" + voteOptionMapper.batchInsert(optionList)
   }
 
+  def "updateOptions-test" () {
+    given:
+    def option = new VoteOption()
+    option.setOptionName("测试修改")
+    option.setId(7)
+    expect:
+    println "============" + voteOptionMapper.updateOptions(option)
+  }
+
+
 }

@@ -1,5 +1,6 @@
 package com.dong.vote.mapperTest
 
+import com.dong.vote.entity.VoteHistory
 import com.dong.vote.mapper.VoteHistoryMapper
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,10 +19,15 @@ class VoteHistoryMapperTest extends Specification {
 
   def "insert-test"() {
     given:
-    def voteId = 2
-    def voteName = "投票名称"
+    def history = new VoteHistory()
+    history.setVoteId(1)
+    history.setVoteName("测试插入历史")
+    history.setMaxOption("测试插入历史")
+    history.setMaxPoll(100)
+    history.setVoteCreatedTime(new Date())
+    history.setPastTime(new Date())
     expect:
-    println "============" + voteHistoryMapper.insert(voteId,voteName)
+    println "============" + voteHistoryMapper.insert(history)
   }
 
 }

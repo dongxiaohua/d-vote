@@ -56,4 +56,15 @@ class VoteMapperTest extends Specification {
 
   }
 
+  def "updateVote-test" () {
+    given:
+    def vote = new Vote()
+    vote.setPastTime(new Date())
+    vote.setVoteName("测试修改")
+    vote.setId(15)
+    vote.setStatus("terminate")
+    expect:
+    println "===========" + voteMapper.updateVote(vote)
+  }
+
 }

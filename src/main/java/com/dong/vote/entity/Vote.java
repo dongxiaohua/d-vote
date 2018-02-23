@@ -27,5 +27,7 @@ public class Vote {
   private Date modifyTime;
   private Date pastTime;
   @Transient
+  private List<VoteOption> optionList;
+  @Transient
   private List<String> optionNameList;
 }

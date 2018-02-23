@@ -90,6 +90,7 @@
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.distelli.persistence:cred-api:3.5.4" level="project" />
     <orderEntry type="library" name="Maven: com.distelli.persistence:crypto-api:3.5.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:sources:1.2.35" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.18" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy-all:2.4.4" level="project" />

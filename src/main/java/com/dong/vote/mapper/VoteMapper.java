@@ -75,4 +75,11 @@ public interface VoteMapper {
   @Delete("DELETE FROM v_vote WHERE id = #{id}")
   int deleteById (@Param("id") Integer id);
 
+  /**
+   * 修改投票
+   * @param vote
+   * @return
+   */
+  int updateVote(Vote vote);
+
 }

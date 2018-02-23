@@ -88,4 +88,11 @@ public interface VoteOptionMapper {
   @Delete("DELETE FROM v_option WHERE vote_id = #{voteId}")
   int deleteByVoteId(@Param("voteId") Integer voteId);
 
+  /**
+   * 批量修改选项
+   * @param option
+   * @return
+   */
+  int updateOptions(VoteOption option);
+
 }

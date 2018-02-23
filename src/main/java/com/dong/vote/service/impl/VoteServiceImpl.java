@@ -1,15 +1,17 @@
 package com.dong.vote.service.impl;
 
 import com.dong.vote.entity.Vote;
+import com.dong.vote.entity.VoteHistory;
 import com.dong.vote.entity.VoteOption;
+import com.dong.vote.mapper.VoteHistoryMapper;
 import com.dong.vote.mapper.VoteMapper;
 import com.dong.vote.mapper.VoteOptionMapper;
 import com.dong.vote.service.VoteService;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,6 +25,8 @@ public class VoteServiceImpl implements VoteService {
   private VoteMapper voteMapper;
   @Autowired
   private VoteOptionMapper voteOptionMapper;
+  @Autowired
+  private VoteHistoryMapper voteHistoryMapper;
 
 
   /**
@@ -59,9 +63,7 @@ public class VoteServiceImpl implements VoteService {
     Vote vote = voteMapper.findVoteById(voteId);
     try {
       List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(voteId);
-      List<String> optionNameList = Lists.newArrayList();
-      optionList.forEach(option -> optionNameList.add(option.getOptionName()));
-      vote.setOptionNameList(optionNameList);
+      vote.setOptionList(optionList);
       log.info("查询成功，voteId={}", voteId);
     } catch (Exception e) {
       log.error("查询失败，voteId={}", voteId, e);
@@ -79,8 +81,22 @@ public class VoteServiceImpl implements VoteService {
   public int deleteVote(Integer voteId) {
     int i = 1;
     try {
+      Vote vote = voteMapper.findVoteById(voteId);
+      List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(voteId);
+      sortIntMethod(optionList);
+      VoteOption option = optionList.get(0);
+      VoteHistory voteHistory = VoteHistory.builder()
+                                           .voteId(voteId)
+                                           .voteName(vote.getVoteName())
+                                           .maxOption(option.getOptionName())
+                                           .maxPoll(option.getOptionPoll())
+                                           .voteCreatedTime(vote.getCreatedTime())
+                                           .pastTime(vote.getPastTime())
+                                           .build();
+      voteHistoryMapper.insert(voteHistory);
       if (voteMapper.deleteById(voteId) == 1) {
-        if (voteOptionMapper.findOptionNumByVoteId(voteId) > 0) {
+        log.info("成功删除投票");
+        if (optionList.size() > 0) {
           i = voteOptionMapper.deleteByVoteId(voteId);
           log.info("删除成功，voteId={}", voteId);
         } else {
@@ -92,6 +108,50 @@ public class VoteServiceImpl implements VoteService {
       log.info("删除失败，voteId={}", voteId, e);
     }
     return i;
+  }
+
+  /**
+   * 修改投票及选项
+   *
+   * @param vote
+   */
+  @Override
+  public int updateVote(Vote vote) {
+    int i = 0;
+    try {
+      if (voteMapper.updateVote(vote) == 1) {
+        List<String> optionNames = vote.getOptionNameList();
+        List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(vote.getId());
+        for (int num = 0; num < optionList.size(); i++) {
+          optionList.get(num).setOptionName(optionNames.get(num));
+         i = voteOptionMapper.updateOptions(optionList.get(num));
+        }
+      }
+
+    } catch (Exception e) {
+      log.error("修改失败", e);
+    }
+    return i;
+  }
+
+  /**
+   * 将optionList 按照票数多少排序（升序）
+   *
+   * @param list
+   */
+  @SuppressWarnings("unchecked")
+  private static void sortIntMethod(List list) {
+    Collections.sort(list, (o1, o2) -> {
+      VoteOption hits1 = (VoteOption) o1;
+      VoteOption hits2 = (VoteOption) o2;
+      if (hits1.getOptionPoll() > hits2.getOptionPoll()) {
+        return 1;
+      } else if (hits1.getOptionPoll() == hits2.getOptionPoll()) {
+        return 0;
+      } else {
+        return -1;
+      }
+    });
   }
 
 
