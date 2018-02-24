@@ -137,11 +137,11 @@ public class AdminController {
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String edit(@Valid Vote vote, RedirectAttributes r) {
     try {
-//      if (voteService.updateVote(vote) == 1) {
-//        r.addFlashAttribute("success","编辑成功");
-//      } else {
-//        r.addFlashAttribute("error","修改失败");
-//      }
+      if (voteService.updateVote(vote) == 1) {
+        r.addFlashAttribute("success","编辑成功");
+      } else {
+        r.addFlashAttribute("error","修改失败");
+      }
     } catch (Exception e) {
       log.error("编辑失败",e);
       r.addFlashAttribute("error","编辑失败");
