@@ -48,7 +48,7 @@ public interface VoteUserMapper {
    * @return
    */
   @Select("SELECT count(*) FROM v_user WHERE user_name = #{userName}")
-  int checkUsername(@Param("userName") String userName);
+  int checkUserName(@Param("userName") String userName);
 
   /**
    * 更改用户投票时间
@@ -58,5 +58,13 @@ public interface VoteUserMapper {
    */
   @Update("UPDATE v_user SET vote_time = now() WHERE user_name = #{userName}")
   int updateVoteTime(@Param("userName") String userName);
+
+  /**
+   * 验证用户用密码是否正确
+   * @param voteUser
+   * @return
+   */
+  VoteUser findUserByNameAndPwd(VoteUser voteUser);
+
 
 }
