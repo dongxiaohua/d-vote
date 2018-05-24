@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * @author dongxiaohua
- *         Created on 2018/2/1.
+ * Created on 2018/2/1.
  */
 @Controller
 @Slf4j
@@ -138,13 +138,13 @@ public class AdminController {
   public String edit(@Valid Vote vote, RedirectAttributes r) {
     try {
       if (voteService.updateVote(vote) == 1) {
-        r.addFlashAttribute("success","编辑成功");
+        r.addFlashAttribute("success", "编辑成功");
       } else {
-        r.addFlashAttribute("error","修改失败");
+        r.addFlashAttribute("error", "修改失败");
       }
     } catch (Exception e) {
-      log.error("编辑失败",e);
-      r.addFlashAttribute("error","编辑失败");
+      log.error("编辑失败", e);
+      r.addFlashAttribute("error", "编辑失败");
     }
     return "redirect:/admin/edit?id=" + vote.getId();
   }
@@ -167,7 +167,6 @@ public class AdminController {
     }
     return "redirect:/admin/list";
   }
-
 
 
 }

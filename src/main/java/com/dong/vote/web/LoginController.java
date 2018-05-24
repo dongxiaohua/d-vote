@@ -16,11 +16,11 @@ import java.util.Map;
 
 /**
  * @author dongxiaohua
- *         Created on 2018/2/24.
+ * Created on 2018/2/24.
  */
 @Controller
 @Slf4j
-//@RequestMapping("/lg")
+@RequestMapping("/lg")
 public class LoginController {
 
   @Autowired
