@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -42,17 +43,20 @@ public class LoginController {
    * @return
    */
   @RequestMapping(value = "/login", method = RequestMethod.POST)
-  public String login(@Valid VoteUser user) {
+  public String login(@Valid VoteUser user, HttpSession session) {
     try {
       VoteUser voteUser = voteUserMapper.findUserByNameAndPwd(user);
-      if (voteUser != null) {
-        return "home/home";
+      if (voteUser == null) {
+        return "redirect:/lg/login";
       }
-
+      session.setAttribute("userName", voteUser.getUserName());
+      session.setAttribute("passWord", voteUser.getPassWord());
+      session.setAttribute("userId", voteUser.getId());
+      return "redirect:/";
     } catch (Exception e) {
       log.error("登录失败", e);
+      return "redirect:/lg/login";
     }
-    return "redirect:/login";
   }
 
   /**
@@ -71,9 +75,9 @@ public class LoginController {
    * @return
    */
   @RequestMapping(value = "/register", method = RequestMethod.POST)
-  public String register(@RequestParam VoteUser voteUser) {
+  public String register(@Valid VoteUser voteUser) {
     voteUserMapper.insert(voteUser.getUserName(), voteUser.getPassWord(), "user");
-    return "redirect:/login";
+    return "redirect:/lg/login";
   }
 
 

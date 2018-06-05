@@ -3,7 +3,6 @@ package com.dong.vote.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -24,5 +23,4 @@ public class VoteUser {
   private String passWord;
   private Date voteTime;
   private int limit;
-
 }

@@ -12,20 +12,19 @@
   </listener>
 
   <!--<filter>-->
-    <!--<description>shiro 权限拦截</description>-->
-    <!--<filter-name>shiroFilter</filter-name>-->
-    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-    <!--<async-supported>true</async-supported>-->
-    <!--<init-param>-->
-      <!--<param-name>targetFilterLifecycle</param-name>-->
-      <!--<param-value>true</param-value>-->
-    <!--</init-param>-->
+  <!--<description>shiro 权限拦截</description>-->
+  <!--<filter-name>shiroFilter</filter-name>-->
+  <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+  <!--<async-supported>true</async-supported>-->
+  <!--<init-param>-->
+  <!--<param-name>targetFilterLifecycle</param-name>-->
+  <!--<param-value>true</param-value>-->
+  <!--</init-param>-->
   <!--</filter>-->
   <!--<filter-mapping>-->
-    <!--<filter-name>shiroFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
+  <!--<filter-name>shiroFilter</filter-name>-->
+  <!--<url-pattern>/*</url-pattern>-->
   <!--</filter-mapping>-->
-
 
 
   <filter>
@@ -44,6 +43,38 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+
+  <!--检测登录过滤器-->
+  <filter>
+    <filter-name>SessionFilter</filter-name>
+    <filter-class>com.dong.vote.util.CheckUrlFilter</filter-class>
+    <init-param>
+      <param-name>loginStrings</param-name><!-- 对登录页面不进行过滤 -->
+      <param-value>/login;/register</param-value>
+    </init-param>
+    <init-param>
+      <param-name>includeStrings</param-name><!-- 只对指定过滤参数后缀进行过滤 -->
+      <param-value>.ftl;.jsp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redirectPath</param-name><!-- 未通过跳转到登录界面 -->
+      <param-value>/lg/login</param-value>
+    </init-param>
+    <init-param>
+      <param-name>disableFilter</param-name><!-- Y:过滤无效 -->
+      <param-value>N</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!--session过期时间-->
+  <session-config>
+    <session-timeout>1</session-timeout>
+  </session-config>
 
 
   <servlet>

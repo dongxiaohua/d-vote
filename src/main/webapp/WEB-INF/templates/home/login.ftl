@@ -18,7 +18,7 @@
         <p>https://github.com/dongxiaohua/d-vote</p>
     </div>
 
-    <form action="${ctx}/login" method="post" id="loginForm">
+    <form action="${ctx}/lg/login" method="post" id="loginForm">
         <div>
             <input type="text" name="userName" class="userName" placeholder="用户名" autocomplete="off"/>
         </div>
@@ -37,8 +37,8 @@
 <script src="${ctx}/static/js/login.jquery.min.js"></script>
 <script src="${ctx}/static/js/common.js"></script>
 <!--背景图片自动更换-->
-<script src="${ctx}/static/js/supersized.3.2.7.min.js"></script>
-<script src="${ctx}/static/js/supersized-init.js"></script>
+<script src=""></script>
+<script src=""></script>
 <!--表单验证-->
 <script src="${ctx}/static/js/jquery.validate.min.js"></script>
 

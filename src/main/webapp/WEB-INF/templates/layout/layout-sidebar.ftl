@@ -39,7 +39,7 @@
             <a href="${ctx}/admin/add"><i class="fa fa-circle-o"></i> 创建投票</a>
           </li>
             <li>
-                <a href="${ctx}/login"><i class="fa fa-circle-o"></i> 登录</a>
+                <a href="${ctx}/lg/login"><i class="fa fa-circle-o"></i> 登录</a>
             </li>
         </ul>
       </li>
