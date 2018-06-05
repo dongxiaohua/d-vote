@@ -50,4 +50,12 @@ public interface VoteService {
    */
   int updateVote(Vote vote);
 
+  /**
+   * 检测当前用户是否投票
+   *
+   * @param userId
+   * @return
+   */
+  boolean checkUserToVote(Integer userId,Integer voteId);
+
 }

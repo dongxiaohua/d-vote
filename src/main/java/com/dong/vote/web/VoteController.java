@@ -5,10 +5,12 @@ import com.dong.vote.entity.VoteOption;
 import com.dong.vote.mapper.VoteMapper;
 import com.dong.vote.mapper.VoteOptionMapper;
 import com.dong.vote.service.VoteOptionService;
+import com.dong.vote.service.VoteService;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +40,8 @@ public class VoteController {
   private VoteOptionMapper voteOptionMapper;
   @Resource
   private VoteOptionService optionService;
+  @Autowired
+  private VoteService voteService;
 
   /**
    * 最新投票列表
@@ -102,9 +107,29 @@ public class VoteController {
    * @return
    */
   @RequestMapping(value = "/voting", method = RequestMethod.POST)
-  public String votingPost(@RequestParam int optionId, @RequestParam String otherOption, @RequestParam int voteId, RedirectAttributes r) {
+  public String votingPost(@RequestParam int optionId, @RequestParam String otherOption, @RequestParam int voteId, RedirectAttributes r, HttpSession session) {
     if (Strings.isNullOrEmpty(otherOption) && optionId == 0) {
-      r.addFlashAttribute("waring", "您没有做出选择");
+      r.addFlashAttribute("warning", "您没有做出选择");
+      return "redirect:/v/voting?id=" + voteId;
+    }
+
+    Vote vote = voteMapper.findVoteById(voteId);
+    if (!"initiate".equals(vote.getStatus())) {
+      r.addFlashAttribute("error", "当前投票已关闭");
+      return "redirect:/v/voting?id=" + voteId;
+    }
+    try {
+      Integer userId = (Integer) session.getAttribute("userId");
+      if (userId == null) {
+        return "redirect:/lg/login";
+      }
+      if (voteService.checkUserToVote(userId, voteId)) {
+        r.addFlashAttribute("warning", "您今天已经投过票了，请明天再投吧！");
+        return "redirect:/v/voting?id=" + voteId;
+      }
+    } catch (Exception e) {
+      log.error("检测当前用户是否投票异常，error:", e);
+      r.addFlashAttribute("warning", "检测当前用户是否投票异常");
       return "redirect:/v/voting?id=" + voteId;
     }
     try {

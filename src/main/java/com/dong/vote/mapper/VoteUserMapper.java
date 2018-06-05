@@ -53,18 +53,24 @@ public interface VoteUserMapper {
   /**
    * 更改用户投票时间
    *
-   * @param userName
    * @return
    */
-  @Update("UPDATE v_user SET vote_time = now() WHERE user_name = #{userName}")
-  int updateVoteTime(@Param("userName") String userName);
+  @Update("UPDATE v_user SET vote_time = #{user.voteTime},vote_ids = #{user.voteIds},today_vote_ids = #{user.todayVoteIds} WHERE id = #{user.id}")
+  void updateVoteTime(@Param("user") VoteUser voteUser);
 
   /**
    * 验证用户用密码是否正确
+   *
    * @param voteUser
    * @return
    */
   VoteUser findUserByNameAndPwd(VoteUser voteUser);
+
+  /**
+   * 将所有用户今天所涉及的投票设为null
+   */
+  @Update("UPDATE v_user SET today_vote_ids = null")
+  void updateTodayVoteIds();
 
 
 }

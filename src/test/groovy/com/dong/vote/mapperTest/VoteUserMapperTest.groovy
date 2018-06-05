@@ -20,7 +20,7 @@ class VoteUserMapperTest extends Specification {
     def pwd = "123"
     def rights = "user"
     expect:
-    println "===========" + voteUserMapper.insert(name,pwd,rights)
+    println "===========" + voteUserMapper.insert(name, pwd, rights)
   }
 
   def "findUserById-mapper"() {
@@ -29,6 +29,11 @@ class VoteUserMapperTest extends Specification {
     expect:
     println "=========" + voteUserMapper.findById(id).userName
 
+  }
+
+  def "updateTodayVoteIds"() {
+    expect:
+    println "==========" + voteUserMapper.updateTodayVoteIds()
   }
 
 }

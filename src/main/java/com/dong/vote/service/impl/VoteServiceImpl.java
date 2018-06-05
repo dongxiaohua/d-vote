@@ -3,15 +3,25 @@ package com.dong.vote.service.impl;
 import com.dong.vote.entity.Vote;
 import com.dong.vote.entity.VoteHistory;
 import com.dong.vote.entity.VoteOption;
+import com.dong.vote.entity.VoteUser;
 import com.dong.vote.mapper.VoteHistoryMapper;
 import com.dong.vote.mapper.VoteMapper;
 import com.dong.vote.mapper.VoteOptionMapper;
+import com.dong.vote.mapper.VoteUserMapper;
 import com.dong.vote.service.VoteService;
+import com.google.common.base.CharMatcher;
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -21,12 +31,17 @@ import java.util.List;
 @Service
 @Slf4j
 public class VoteServiceImpl implements VoteService {
+
+  private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
   @Autowired
   private VoteMapper voteMapper;
   @Autowired
   private VoteOptionMapper voteOptionMapper;
   @Autowired
   private VoteHistoryMapper voteHistoryMapper;
+  @Autowired
+  private VoteUserMapper voteUserMapper;
 
 
   /**
@@ -85,14 +100,15 @@ public class VoteServiceImpl implements VoteService {
       List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(voteId);
       sortIntMethod(optionList);
       VoteOption option = optionList.get(0);
-      VoteHistory voteHistory = VoteHistory.builder()
-                                           .voteId(voteId)
-                                           .voteName(vote.getVoteName())
-                                           .maxOption(option.getOptionName())
-                                           .maxPoll(option.getOptionPoll())
-                                           .voteCreatedTime(vote.getCreatedTime())
-                                           .pastTime(vote.getPastTime())
-                                           .build();
+      VoteHistory voteHistory = VoteHistory
+        .builder()
+        .voteId(voteId)
+        .voteName(vote.getVoteName())
+        .maxOption(option.getOptionName())
+        .maxPoll(option.getOptionPoll())
+        .voteCreatedTime(vote.getCreatedTime())
+        .pastTime(vote.getPastTime())
+        .build();
       voteHistoryMapper.insert(voteHistory);
       if (voteMapper.deleteById(voteId) == 1) {
         log.info("成功删除投票");
@@ -124,7 +140,7 @@ public class VoteServiceImpl implements VoteService {
         List<VoteOption> optionList = voteOptionMapper.findOptionByVoteId(vote.getId());
         for (int num = 0; num < optionList.size(); i++) {
           optionList.get(num).setOptionName(optionNames.get(num));
-         i = voteOptionMapper.updateOptions(optionList.get(num));
+          i = voteOptionMapper.updateOptions(optionList.get(num));
         }
       }
 
@@ -132,6 +148,85 @@ public class VoteServiceImpl implements VoteService {
       log.error("修改失败", e);
     }
     return i;
+  }
+
+  /**
+   * 检测当前用户是否投票
+   * true代表今天已经投票
+   *
+   * @param userId
+   * @return
+   */
+  @Override
+  public boolean checkUserToVote(Integer userId, Integer voteId) {
+    VoteUser user = voteUserMapper.findById(userId);
+
+    String voteIds = filterVoteId(user, voteId);
+    String todayVoteIds = todayVoteIds(user, voteId);
+
+    if (checkUserTheOtherVote(user, voteId)) {
+      user.setVoteTime(new Date());
+      user.setVoteIds(voteIds);
+      user.setTodayVoteIds(todayVoteIds);
+      voteUserMapper.updateVoteTime(user);
+
+      return true;
+    }
+
+    user.setVoteTime(new Date());
+    user.setVoteIds(voteIds);
+    user.setTodayVoteIds(todayVoteIds);
+    voteUserMapper.updateVoteTime(user);
+    return false;
+  }
+
+  /**
+   * 判断当前用户当前投票是否投票
+   *
+   * @return
+   */
+  private boolean checkUserTheOtherVote(VoteUser user, Integer voteId) {
+    String todayVoteIds = user.getTodayVoteIds();
+    if ((sdf.format(new Date())).equals(sdf.format(user.getVoteTime()))) {
+      if (user.getTodayVoteIds() != null) {
+        if (todayVoteIds.contains(String.valueOf(voteId))) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * 拼装用户涉及的投票
+   *
+   * @param user
+   * @param voteId
+   * @return
+   */
+  private String filterVoteId(VoteUser user, Integer voteId) {
+    List<String> voteIds = Lists.newArrayList();
+    if (user.getVoteIds() != null) {
+      voteIds.addAll(Splitter.on(CharMatcher.anyOf(",\n\t")).trimResults().omitEmptyStrings().splitToList(user.getVoteIds()));
+    }
+    voteIds.add(String.valueOf(voteId));
+    voteIds = new ArrayList<String>(new HashSet<String>(voteIds));
+    return Joiner.on(",").join(voteIds);
+  }
+
+  /**
+   * 拼装当前用户今天涉及的投票
+   *
+   * @return
+   */
+  private String todayVoteIds(VoteUser user, Integer voteId) {
+    List<String> todatVoteIds = Lists.newArrayList();
+    if (user.getTodayVoteIds() != null) {
+      todatVoteIds.addAll(Splitter.on(CharMatcher.anyOf(",\n\t")).trimResults().omitEmptyStrings().splitToList(user.getTodayVoteIds()));
+    }
+    todatVoteIds.add(String.valueOf(voteId));
+    todatVoteIds = new ArrayList<String>(new HashSet<String>(todatVoteIds));
+    return Joiner.on(",").join(todatVoteIds);
   }
 
   /**

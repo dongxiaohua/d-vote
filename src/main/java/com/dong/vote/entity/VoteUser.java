@@ -23,4 +23,6 @@ public class VoteUser {
   private String passWord;
   private Date voteTime;
   private int limit;
+  private String voteIds;
+  private String todayVoteIds;
 }

@@ -93,18 +93,18 @@
   <div class="row">
     <div class="col-md-12">
     <#--最新投票展示-->
-      <div class="box box-info">
-        <h3 id="hotVote">热门投票</h3>
-        <table id="datatable" class="table table-hover table-bordered" cellspacing="0" width="100%">
-          <thead>
-          <tr>
-            <th><span id="hotVoteName" style="">${vote.voteName!}</span></th>
-            <th><span style="">${vote.voteName!}</span></th>
-            <th><span style="">${vote.voteName!}</span></th>
-          </tr>
-          </thead>
-        </table>
-      </div>
+      <#--<div class="box box-info">-->
+        <#--<h3 id="hotVote">热门投票</h3>-->
+        <#--<table id="datatable" class="table table-hover table-bordered" cellspacing="0" width="100%">-->
+          <#--<thead>-->
+          <#--<tr>-->
+            <#--<th><span id="hotVoteName" style="">${vote.voteName!}</span></th>-->
+            <#--<th><span style="">${vote.voteName!}</span></th>-->
+            <#--<th><span style="">${vote.voteName!}</span></th>-->
+          <#--</tr>-->
+          <#--</thead>-->
+        <#--</table>-->
+      <#--</div>-->
     <#--投票-->
       <div class="box box-info">
         <div class="box-header with-border">
