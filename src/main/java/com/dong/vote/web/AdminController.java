@@ -5,6 +5,7 @@ import com.dong.vote.entity.VoteOption;
 import com.dong.vote.mapper.VoteMapper;
 import com.dong.vote.mapper.VoteOptionMapper;
 import com.dong.vote.service.VoteService;
+import com.dong.vote.service.impl.AdminService;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,6 +42,8 @@ public class AdminController {
   private VoteService voteService;
   @Autowired
   private VoteOptionMapper voteOptionMapper;
+  @Autowired
+  private AdminService adminService;
 
 
   /**
@@ -48,7 +52,10 @@ public class AdminController {
    * @return
    */
   @RequestMapping(value = "/list", method = RequestMethod.GET)
-  public String list() {
+  public String list(HttpSession session) {
+    if (!adminService.checkUserRights(String.valueOf(session.getAttribute("userId")))) {
+      return "home/unauthorized";
+    }
     return "admin/list";
   }
 
@@ -85,7 +92,10 @@ public class AdminController {
    * @return
    */
   @RequestMapping(value = "/add", method = RequestMethod.GET)
-  public String addGet(Model model) {
+  public String addGet(Model model, HttpSession session) {
+    if (!adminService.checkUserRights(String.valueOf(session.getAttribute("userId")))) {
+      return "home/unauthorized";
+    }
     return "admin/add";
   }
 
@@ -122,7 +132,10 @@ public class AdminController {
    * @return
    */
   @RequestMapping(value = "/edit", method = RequestMethod.GET)
-  public String editGet(@RequestParam int id, Model model) {
+  public String editGet(@RequestParam int id, Model model, HttpSession session) {
+    if (!adminService.checkUserRights(String.valueOf(session.getAttribute("userId")))) {
+      return "home/unauthorized";
+    }
     Vote vote = voteService.findVoteAndOptionByVoteId(id);
     model.addAttribute("optionList", vote.getOptionList());
     model.addAttribute("vote", vote);

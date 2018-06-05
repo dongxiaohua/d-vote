@@ -14,7 +14,7 @@
 </#assign>
 <#assign breadcrumbContent>
 <section class="content-header">
-  <h1>历史列表</h1>
+  <h1>用户投票列表</h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
   </ol>
@@ -30,7 +30,6 @@
           <table id="datatable" class="table table-hover table-bordered" cellspacing="0" width="100%">
             <thead>
             <tr>
-              <th>ID编号</th>
               <th>投票ID</th>
               <th>投票名称</th>
               <th>过期时间</th>
@@ -53,9 +52,9 @@
   $(document).ready(function () {
     var table = $("#datatable").DataTable({
       "deferRender": true,
-      "ajax": "${ctx}/history/history-rest",
+      "ajax": "${ctx}/v/history-rest",
       "columnDefs": [{
-        "targets": 4,
+        "targets": 3,
         "render": function (data, type, row, meta) {
           if (type === 'display') {
             return "<a href='${ctx}/v/detail?voteId=" + data + "'>详情</a>";
@@ -69,7 +68,7 @@
       "mark": true,
       "iDisplayLength": 50,
       "bSortClasses": true,
-      "order": [[3, 'desc']]
+      "order": [[2, 'desc']]
     });
 
 //

@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +21,15 @@ public interface VoteMapper {
    * @return
    */
   int batchInsert(@Param("votes") List<Vote> voteList);
+
+
+  /**
+   * 根据投票id批量查询
+   *
+   * @param voteIds
+   * @return
+   */
+  List<Vote> batchFindVoteByUser(@Param("voteIds") List<String> voteIds);
 
   /**
    * 查询所有投票
@@ -54,8 +62,8 @@ public interface VoteMapper {
    * @param voteId
    * @return
    */
-  @Select("SELECT vote_name FROM v_vote WHERE id=#{voteId}")
-  String findVoteNameById(@Param("voteId") int voteId);
+  @Select("SELECT * FROM v_vote WHERE id=#{voteId}")
+  Vote findVoteNameById(@Param("voteId") int voteId);
 
   /**
    * 修改投票状态
@@ -69,14 +77,16 @@ public interface VoteMapper {
 
   /**
    * 根据id删除
+   *
    * @param id 投票ID
    * @return
    */
   @Delete("DELETE FROM v_vote WHERE id = #{id}")
-  int deleteById (@Param("id") Integer id);
+  int deleteById(@Param("id") Integer id);
 
   /**
    * 修改投票
+   *
    * @param vote
    * @return
    */

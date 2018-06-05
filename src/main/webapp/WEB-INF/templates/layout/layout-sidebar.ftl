@@ -2,7 +2,7 @@
   <!-- Inner sidebar -->
   <div class="sidebar">
     <!-- Sidebar Menu -->
-    <#--data-widget="tree"-->
+  <#--data-widget="tree"-->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li class="treeview">
@@ -17,7 +17,7 @@
             <a href="${ctx}/v/list"><i class="fa fa-list-alt"></i> 最新投票列表</a>
           </li>
           <li>
-            <a href="${ctx}/history/list"><i class="fa fa-history"></i> 历史投票</a>
+            <a href="${ctx}/v/history-list"><i class="fa fa-history"></i> 用户历史投票</a>
           </li>
         </ul>
       </li>
@@ -38,9 +38,12 @@
           <li>
             <a href="${ctx}/admin/add"><i class="fa fa-circle-o"></i> 创建投票</a>
           </li>
-            <li>
-                <a href="${ctx}/lg/login"><i class="fa fa-circle-o"></i> 登录</a>
-            </li>
+          <#--<li>-->
+            <#--<a href="${ctx}/lg/login"><i class="fa fa-circle-o"></i> 登录</a>-->
+          <#--</li>-->
+          <li>
+            <a href="${ctx}/history/list"><i class="fa fa-circle-o"></i> 历史投票</a>
+          </li>
         </ul>
       </li>
 

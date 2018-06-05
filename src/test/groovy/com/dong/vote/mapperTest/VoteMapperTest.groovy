@@ -67,4 +67,12 @@ class VoteMapperTest extends Specification {
     println "===========" + voteMapper.updateVote(vote)
   }
 
+  def "batchFindVoteByUser"() {
+    given:
+    def list = ['3','21']
+    expect:
+    println "============"
+    println voteMapper.batchFindVoteByUser(list)
+  }
+
 }

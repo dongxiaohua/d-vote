@@ -22,7 +22,7 @@ public class VoteUser {
   private String userName;
   private String passWord;
   private Date voteTime;
-  private int limit;
+  private String rights;
   private String voteIds;
   private String todayVoteIds;
 }

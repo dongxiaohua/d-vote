@@ -18,7 +18,7 @@ public interface VoteUserMapper {
    * @param id
    * @return
    */
-  @Select("SELECT * FROM v_user WHERE id = ${id}")
+  @Select("SELECT * FROM v_user WHERE id = #{id}")
   VoteUser findById(@Param("id") int id);
 
   /**
@@ -67,7 +67,7 @@ public interface VoteUserMapper {
   VoteUser findUserByNameAndPwd(VoteUser voteUser);
 
   /**
-   * 将所有用户今天所涉及的投票设为null
+   * 将所有用户今天所涉及的投票设为null todo
    */
   @Update("UPDATE v_user SET today_vote_ids = null")
   void updateTodayVoteIds();

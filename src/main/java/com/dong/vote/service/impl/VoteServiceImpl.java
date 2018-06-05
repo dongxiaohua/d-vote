@@ -181,6 +181,20 @@ public class VoteServiceImpl implements VoteService {
   }
 
   /**
+   * 根据用户id查询投票
+   *
+   * @param userId
+   * @return
+   */
+  @Override
+  public List<Vote> findVoteByUser(Integer userId) {
+    VoteUser user = voteUserMapper.findById(userId);
+    List<String> voteIds = Splitter.on(CharMatcher.anyOf(",\n\t")).trimResults().omitEmptyStrings().splitToList(user.getVoteIds());
+
+    return voteMapper.batchFindVoteByUser(voteIds);
+  }
+
+  /**
    * 判断当前用户当前投票是否投票
    *
    * @return

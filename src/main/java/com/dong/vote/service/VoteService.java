@@ -58,4 +58,11 @@ public interface VoteService {
    */
   boolean checkUserToVote(Integer userId,Integer voteId);
 
+  /**
+   * 根据用户id查询投票
+   * @param userId
+   * @return
+   */
+  List<Vote> findVoteByUser(Integer userId);
+
 }

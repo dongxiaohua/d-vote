@@ -19,4 +19,12 @@
     WHERE id = #{id}
   </update>
 
+  <select id="batchFindVoteByUser" resultType="com.dong.vote.entity.Vote">
+    SELECT * FROM v_vote
+    WHERE id IN
+    <foreach collection="voteIds" item="id" index="index" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </select>
+
 </mapper>

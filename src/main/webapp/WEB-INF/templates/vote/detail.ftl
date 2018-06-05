@@ -18,6 +18,7 @@
       <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title"></h3>
+          <a href="${ctx}/v/voting?id=${voteId!}" class="btn btn-xs btn-warning">我要参与</a>
         </div>
         <div class="box-body">
         <#--视图区域-->

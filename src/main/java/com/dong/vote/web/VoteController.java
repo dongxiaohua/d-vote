@@ -159,11 +159,48 @@ public class VoteController {
    */
   @RequestMapping(value = "/detail", method = RequestMethod.GET)
   public String detail(@RequestParam int voteId, Model model) {
-    String voteName = voteMapper.findVoteNameById(voteId);
+    Vote vote = voteMapper.findVoteNameById(voteId);
     List<VoteOption> voteOptionList = voteOptionMapper.findOptionPollByVoteId(voteId);
-    model.addAttribute("voteName", voteName);
+    model.addAttribute("voteName", vote.getVoteName());
+    model.addAttribute("voteId", vote.getId());
     model.addAttribute("voteOptionList", voteOptionList);
     return "vote/detail";
+  }
+
+
+  /**
+   * 跳转用户投票历史
+   *
+   * @return
+   */
+  @RequestMapping("/history-list")
+  public String historyList() {
+    return "vote/history-list";
+  }
+
+  /**
+   * 用户 投票历史列表
+   *
+   * @param session
+   * @return
+   */
+  @RequestMapping(value = "/history-rest")
+  @ResponseBody
+  public Map historyRest(HttpSession session) {
+    List<Vote> list = voteService.findVoteByUser((Integer) session.getAttribute("userId"));
+    Map<String, List<Object>> map = Maps.newLinkedHashMap();
+    List<Object> json = Lists.newArrayList();
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    list.forEach(vote -> {
+      List<Object> data = Lists.newArrayList();
+      data.add(String.valueOf(vote.getId()));
+      data.add(String.valueOf(vote.getVoteName()));
+      data.add(fmt.format(vote.getPastTime()));
+      data.add(String.valueOf(vote.getId()));
+      json.add(data);
+    });
+    map.put("data", json);
+    return map;
   }
 
 
