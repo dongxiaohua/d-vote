@@ -64,6 +64,7 @@ public class CheckUrlFilter implements Filter {
       chain.doFilter(request, response);
       return;
     }
+
     //判断用户是否登录
     String user = (String) hrequest.getSession().getAttribute("userName");
     if (Strings.isNullOrEmpty(user)) {
