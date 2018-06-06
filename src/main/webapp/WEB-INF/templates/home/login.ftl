@@ -8,7 +8,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link rel="stylesheet" href="${ctx}/static/css/logStyle.css" />
-
+</head>
 <body>
 
 <div class="login-container">

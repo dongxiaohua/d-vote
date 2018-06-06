@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>网络投票用户注册</title>
   <link rel="stylesheet" href="${ctx}/static/css/logStyle.css"/>
+</head>
 <body>
 
 <div class="register-container">
