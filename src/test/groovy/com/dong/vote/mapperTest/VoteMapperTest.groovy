@@ -35,14 +35,6 @@ class VoteMapperTest extends Specification {
     println "==============" + voteMapper.findAll()
   }
 
-  def "update-test"() {
-    given:
-    def voteId = 4
-    def status = "outmoded"
-    expect:
-    voteMapper.update(voteId, status)
-    println "============" + voteMapper.findVoteById(1).createdTime
-  }
 
   def "batchInsert-test"() {
     given:

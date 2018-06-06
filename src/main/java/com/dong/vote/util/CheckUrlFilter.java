@@ -55,10 +55,10 @@ public class CheckUrlFilter implements Filter {
     String[] includeList = includeStrings.split(";");
 
     // 只对指定过滤参数后缀进行过滤
-    if (this.isContains(hrequest.getRequestURI(), includeList)) {
-      chain.doFilter(request, response);
-      return;
-    }
+//    if (!this.isContains(hrequest.getRequestURI(), includeList)) {
+//      chain.doFilter(request, response);
+//      return;
+//    }
     // 对登录页面不进行过滤
     if (this.isContains(hrequest.getRequestURI(), loginList)) {
       chain.doFilter(request, response);
