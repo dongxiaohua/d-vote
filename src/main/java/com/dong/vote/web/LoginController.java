@@ -49,9 +49,8 @@ public class LoginController {
       if (voteUser == null) {
         return "redirect:/lg/login";
       }
-      session.setAttribute("userName", voteUser.getUserName());
-      session.setAttribute("passWord", voteUser.getPassWord());
       session.setAttribute("userId", voteUser.getId());
+      session.setAttribute("userName", voteUser.getUserName());
       return "redirect:/";
     } catch (Exception e) {
       log.error("登录失败", e);

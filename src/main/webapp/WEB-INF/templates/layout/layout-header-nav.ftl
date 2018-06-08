@@ -23,7 +23,7 @@
             </li>
             <li class="user-footer">
               <div class="pull-right">
-                <a href="${ctx}/home/logout" class="btn btn-default btn-flat">退出</a>
+                <a href="${ctx}/lg/login" class="btn btn-default btn-flat">退出</a>
               </div>
             </li>
           </ul>
