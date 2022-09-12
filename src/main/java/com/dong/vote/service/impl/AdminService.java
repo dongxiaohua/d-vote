@@ -17,6 +17,7 @@ public class AdminService {
   @Autowired
   private VoteUserMapper voteUserMapper;
 
+
   /**
    * 检测当前用户权限
    *
@@ -29,5 +30,8 @@ public class AdminService {
     }
     return false;
   }
+
+
+
 
 }
