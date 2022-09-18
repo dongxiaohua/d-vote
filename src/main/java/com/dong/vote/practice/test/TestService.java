@@ -1,11 +1,9 @@
 package com.dong.vote.practice.test;
 
-import com.dxh.practice.stramFifltsService.EmployPojo;
+import com.dong.vote.practice.stramFifltsService.EmployPojo;
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -13,9 +11,6 @@ public class TestService {
   public static void main(String[] args) {
     //    OverviewInfoScan overviewInfoScan = new CustomObjectScan();
     //    overviewInfoScan.scan();
-
-    BooleanUtils.isFalse(null);
-    new BigDecimal("null");
 
     Test test = new Test();
     List<EmployPojo> pojos = Lists.newArrayList(EmployPojo.builder().name("1").build());

@@ -1,8 +1,8 @@
 package com.dong.vote.practice.service;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -55,7 +55,7 @@ public class ArrayService {
 
     int finalMax = max;
     int finalMin = min;
-    return new HashedMap() {
+    return new HashMap() {
       {
         put("max", finalMax);
         put("min", finalMin);

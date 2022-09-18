@@ -1,16 +1,16 @@
 package com.dong.vote.practice.service;
 
-import com.dxh.practice.stramFifltsService.EmployPojo;
+import com.dong.vote.practice.stramFifltsService.EmployPojo;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.apache.commons.collections.map.HashedMap;
-import org.testng.collections.Maps;
 
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -110,7 +110,7 @@ public class DailyService {
 
     String[] value = new String[10];
 
-    Map<String, List<String>> map = new HashedMap() {
+    Map<String, List<String>> map = new HashMap() {
       {
         put("1", Lists.newArrayList("1", "2"));
         put("2", Lists.newArrayList("3", "4"));
