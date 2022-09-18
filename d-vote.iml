@@ -128,5 +128,9 @@
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.3" level="project" />
     <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" name="Maven: tk.mybatis:mapper-base:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.ben-manes.caffeine:caffeine:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.checkerframework:checker-qual:3.21.4" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.13.1" level="project" />
   </component>
 </module>
