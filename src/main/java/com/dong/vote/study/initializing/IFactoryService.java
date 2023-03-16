@@ -1,7 +1,7 @@
 package com.dong.vote.study.initializing;
 
+import com.google.common.collect.Maps;
 import org.springframework.stereotype.Component;
-import org.testng.collections.Maps;
 
 import java.util.Map;
 

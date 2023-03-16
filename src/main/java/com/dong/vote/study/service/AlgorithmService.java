@@ -108,4 +108,33 @@ public class AlgorithmService {
     return length;
   }
 
+
+  /**
+   * 实现Pow(x,n)
+   * x的n次幂
+   *
+   * @param x
+   * @param n
+   * @return
+   */
+  public double powXn(double x, int n) {
+    if (x == 0.0) {
+      return 0.0d;
+    }
+    long N = n;
+    if (n < 0) {
+      N = -N;
+      x = 1 / x;
+    }
+    double res = 1.0;
+    while (N > 0) {
+      if ((N & 1) == 1) {
+        res *= x;
+      }
+      x *= x;
+      N >>= 1;
+    }
+    return res;
+  }
+
 }

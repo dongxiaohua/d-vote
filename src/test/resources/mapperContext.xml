@@ -12,6 +12,7 @@
         ">
 
   <context:component-scan base-package="com.dong.vote.service"/>
+  <context:component-scan base-package="com.dong.vote.study.service"/>
 
   <aop:aspectj-autoproxy/>
   <import resource="classpath:spring/spring-guava.xml"/>

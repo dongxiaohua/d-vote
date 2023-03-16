@@ -5,8 +5,8 @@ import com.dong.vote.demo.dto.ConfigDTO;
 import com.dong.vote.demo.repository.AbstractBaseRepository;
 import com.dong.vote.demo.repository.AbstractConfigRepository;
 import com.dong.vote.demo.result.ServerResponse;
-import com.github.benmanes.caffeine.cache.Caffeine;
-import com.github.benmanes.caffeine.cache.LoadingCache;
+//import com.github.benmanes.caffeine.cache.Caffeine;
+//import com.github.benmanes.caffeine.cache.LoadingCache;
 import com.github.spring.RedisCache;
 import org.springframework.beans.BeansException;
 import org.springframework.cglib.beans.BeanCopier;
@@ -34,7 +34,7 @@ public abstract class AbstracrBaseService<DO extends ConfigDO, DTO extends Confi
   private final BeanCopier do2dtoCopier;
   private final BeanCopier dto2doCopier;
   protected ApplicationContext context;
-  protected LoadingCache<String, Optional<DTO>> isGrayCache;
+//  protected LoadingCache<String, Optional<DTO>> isGrayCache;
 
 
   public AbstracrBaseService(AbstractConfigRepository<DO> repository, String type) {
@@ -44,7 +44,7 @@ public abstract class AbstracrBaseService<DO extends ConfigDO, DTO extends Confi
     do2dtoCopier = BeanCopier.create(this.doClass, this.dtoClass, false);
     dto2doCopier = BeanCopier.create(this.dtoClass, this.doClass, false);
     this.type = type;
-    this.isGrayCache = Caffeine.newBuilder().expireAfterWrite(5, TimeUnit.SECONDS).maximumSize(128).build(this::cacheLoad);
+//    this.isGrayCache = Caffeine.newBuilder().expireAfterWrite(5, TimeUnit.SECONDS).maximumSize(128).build(this::cacheLoad);
   }
 
   private void initClass() {

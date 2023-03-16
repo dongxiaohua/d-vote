@@ -1,9 +1,9 @@
 package com.dong.vote.study.test;
 
+import com.google.common.collect.Lists;
 import lombok.Builder;
 import lombok.Data;
-import org.apache.commons.collections.CollectionUtils;
-import org.testng.collections.Lists;
+import org.apache.shiro.util.CollectionUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
