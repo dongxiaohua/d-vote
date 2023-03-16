@@ -33,7 +33,7 @@ class AlgorithmServiceTest extends Specification {
     println algorithmService.slidingWindow([1, 2, 2, 4, 5, 5, 2] as int[], 2)
   }
 
-  def "最长不重复子串" () {
+  def "最长不重复子串"() {
     given:
     int[] nums = [1, 2, 3, 3, 4]
     expect:
@@ -42,11 +42,22 @@ class AlgorithmServiceTest extends Specification {
   }
 
 
-  def "IPv4" () {
+  def "IPv4"() {
     given:
     String ipv4 = "172.17.23.4"
     expect:
     println "======="
     println algorithmService.IPv4(ipv4)
+  }
+
+  def "描述十进制字符串差"() {
+    given:
+    // 15
+    String a = "f"
+    // 12
+    String b = "c"
+    expect:
+    println "======"
+    println algorithmService.difference(a, b)
   }
 }

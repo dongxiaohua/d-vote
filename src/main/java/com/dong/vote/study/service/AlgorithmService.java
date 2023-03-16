@@ -256,4 +256,29 @@ public class AlgorithmService {
     return true;
   }
 
+
+  /**
+   * 描述（String）两个十进制数字的差
+   *
+   * @param a
+   * @param b
+   * @return
+   */
+  public int difference(String a, String b) {
+
+    int aNum = 0, bNum = 0;
+
+    for (int i = 0; i < a.length(); i++) {
+      char c = a.charAt(i);
+      aNum = aNum * 10 + (int) (c - '0');
+    }
+
+    for (int i = 0; i < b.length(); i++) {
+      char c = b.charAt(i);
+      bNum = bNum * 10 + (int) (c - '0');
+    }
+
+    return aNum - bNum;
+  }
+
 }
