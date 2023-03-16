@@ -285,4 +285,65 @@ public class AlgorithmService {
     return aNum - bNum;
   }
 
+
+  /**
+   * 二进制中1的个数
+   * 输入一个整数 n ，输出该数32位二进制表示中1的个数。其中负数用补码表示。
+   * <p>
+   * 解：
+   * 利用位运算，不算右移并判断
+   * >> 表示右移，如果该数为正，则高位补0，若为负数，则高位补1；
+   * >>> 无符号右移，也叫逻辑右移，即若该数为正，则高位补0，而若该数为负数，则右移后高位同样补0。
+   *
+   * @param n
+   * @return
+   */
+  public int NumberOf1(int n) {
+    int res = 0;
+    while (n > 0) {
+      if ((n & 1) != 0) {
+        res++;
+      }
+      n = n >>> 1;
+    }
+    return res;
+  }
+
+
+  /**
+   * 进制转换
+   * 给定一个十进制数 M ，以及需要转换的进制数 N 。将十进制数 M 转化为 N 进制数。
+   * 当 N 大于 10 以后， 应在结果中使用大写字母表示大于 10 的一位，如 'A' 表示此位为 10 ， 'B' 表示此位为 11 。
+   * 若 M 为负数，应在结果中保留负号。
+   * <p>
+   * 解： 除N取余，然后倒序排列，高位补零
+   *
+   * @param M
+   * @param N
+   * @return
+   */
+  public String solve(int M, int N) {
+    if (M == 0) {
+      return "0";
+    }
+    boolean f = false;
+    if (M < 0) {
+      f = true;
+      M = -M;
+    }
+    String s = "0123456789ABCDEF";
+    StringBuilder sb = new StringBuilder();
+
+    while (M != 0) {
+      sb.append(s.charAt(M % N));
+      M /= N;
+    }
+
+    if (f) {
+      sb.append("_");
+    }
+
+    return sb.reverse().toString();
+  }
+
 }
