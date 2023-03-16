@@ -3,7 +3,9 @@ package com.dong.vote.study.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 算法练习
@@ -134,6 +136,64 @@ public class AlgorithmService {
       x *= x;
       N >>= 1;
     }
+    return res;
+  }
+
+
+  /**
+   * 给定一个长度为 n 的数组 num 和滑动窗口的大小 size ，找出所有滑动窗口里数值的最大值。
+   * <p>
+   * 滑动窗口
+   *
+   * @param nums
+   * @param size
+   * @return
+   */
+  public ArrayList<Integer> slidingWindow(int[] nums, int size) {
+
+    ArrayList<Integer> res = new ArrayList<>();
+    if (nums == null || nums.length == 0 || size == 0) {
+      return res;
+    }
+
+    int max = 0;
+    for (int i = 0; i <= nums.length - size; i++) {
+      max = nums[i];
+      for (int j = i; j < i + size; j++) {
+        if (max < nums[j]) {
+          max = nums[j];
+        }
+      }
+      res.add(max);
+    }
+
+    return res;
+  }
+
+
+  /**
+   * 给定一个长度为n的数组nums，返回arr的最长无重复元素子数组的长度，无重复指的是所有数字都不相同。
+   * 子数组是连续的，比如[1,3,5,7,9]的子数组有[1,3]，[3,5,7]等等，但是[1,3,7]不是子数组
+   *
+   * @param nums
+   * @return
+   */
+  public int maxLength(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+    int left = -1;
+    int res = 0;
+    Map<Integer, Integer> map = new HashMap<>();
+
+    for (int right = 0; right <= nums.length - 1; right++) {
+      if (map.containsKey(nums[right])) {
+        left = Math.max(left, map.get(nums[right]));
+      }
+      res = Math.max(res, right - left);
+      map.put(nums[right], right);
+    }
+
     return res;
   }
 

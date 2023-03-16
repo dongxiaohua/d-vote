@@ -26,4 +26,18 @@ class AlgorithmServiceTest extends Specification {
     println algorithmService.powXn(3, 4)
     println algorithmService.powXn(3, -2)
   }
+
+  def "滑动窗口"() {
+    expect:
+    println "========"
+    println algorithmService.slidingWindow([1, 2, 2, 4, 5, 5, 2] as int[], 2)
+  }
+
+  def "最长不重复子串" () {
+    given:
+    int[] nums = [1, 2, 3, 3, 4]
+    expect:
+    println "========="
+    println algorithmService.maxLength(nums)
+  }
 }
