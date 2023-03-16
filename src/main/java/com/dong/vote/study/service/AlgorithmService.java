@@ -197,4 +197,63 @@ public class AlgorithmService {
     return res;
   }
 
+
+  /**
+   * IPv4 地址由十进制数和点来表示，每个地址包含4个十进制数，其范围为 0 - 255， 用(".")分割。比如，172.16.254.1；
+   * 同时，IPv4 地址内的数不会以 0 开头。比如，地址 172.16.254.01 是不合法的
+   *
+   * @param IP
+   * @return
+   */
+  public boolean IPv4(String IP) {
+    if (IP == null) {
+      return false;
+    }
+
+    if (!IP.contains(".")) {
+      return false;
+    }
+
+    String[] ipArr = IP.split("\\.");
+
+    // IP地址必有4段
+    if (ipArr.length != 4) {
+      return false;
+    }
+
+    for (int i = 0; i < ipArr.length; i++) {
+      String s = ipArr[i];
+      // 如果为0，则代表有连续..
+      if (s.length() == 0) {
+        return false;
+      }
+      // 判断长度是否在4个以内
+      if (s.length() > 3) {
+        return false;
+      }
+      // 判断是否以0开头
+      if (s.startsWith("0")) {
+        return false;
+      }
+
+      int num = 0;
+      // 判断是否全部为数字
+      for (int j = 0; j < s.length(); j++) {
+        char c = s.charAt(j);
+        if (c < '0' || c > '9') {
+          return false;
+        }
+
+        num = num * 10 + (int) (c - '0');
+      }
+
+      // 判断转化为二进制数字后是否在0-255
+      if (num < 0 || num > 255) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 }

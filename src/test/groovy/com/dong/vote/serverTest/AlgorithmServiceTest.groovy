@@ -40,4 +40,13 @@ class AlgorithmServiceTest extends Specification {
     println "========="
     println algorithmService.maxLength(nums)
   }
+
+
+  def "IPv4" () {
+    given:
+    String ipv4 = "172.17.23.4"
+    expect:
+    println "======="
+    println algorithmService.IPv4(ipv4)
+  }
 }
