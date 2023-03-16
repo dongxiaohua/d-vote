@@ -186,11 +186,15 @@ public class AlgorithmService {
     int res = 0;
     Map<Integer, Integer> map = new HashMap<>();
 
+    // 左指针-1开始，有指针0开始
     for (int right = 0; right <= nums.length - 1; right++) {
+      // 查看当前元素是否存在于map中，存在则移动左指针，需要和存在于map中相同元素的下标取最大值
       if (map.containsKey(nums[right])) {
         left = Math.max(left, map.get(nums[right]));
       }
+      // 更新结果，当前结果与最新长度取最大值
       res = Math.max(res, right - left);
+      // 更新重复元素下标
       map.put(nums[right], right);
     }
 
