@@ -81,6 +81,37 @@ public class AlgorithmService {
 
 
   /**
+   * 动态规划
+   * <p>
+   * 零钱兑换
+   * 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
+   * 示例 1:
+   * 输入: coins = [1, 2, 5], amount = 11
+   * 输出: 3
+   * 解释: 11 = 5 + 5 + 1
+   * 示例 2:
+   * 输入: coins = [2], amount = 3
+   * 输出: -1
+   * 说明:
+   * 你可以认为每种硬币的数量是无限的。
+   *
+   * @param coins
+   * @param amount
+   * @return
+   */
+  public int countAmount(int[] coins, int amount) {
+    if (coins == null || coins.length == 0) {
+      return -1;
+    }
+
+    Map<Integer, Integer> map = new HashMap<>();
+
+
+    return -1;
+  }
+
+
+  /**
    * 无重复字符串的最长子串
    * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
    *
@@ -172,6 +203,8 @@ public class AlgorithmService {
 
 
   /**
+   * 最长不重复子串
+   * <p>
    * 给定一个长度为n的数组nums，返回arr的最长无重复元素子数组的长度，无重复指的是所有数字都不相同。
    * 子数组是连续的，比如[1,3,5,7,9]的子数组有[1,3]，[3,5,7]等等，但是[1,3,7]不是子数组
    *
@@ -249,11 +282,10 @@ public class AlgorithmService {
         }
 
         num = num * 10 + (int) (c - '0');
-      }
-
-      // 判断转化为二进制数字后是否在0-255
-      if (num < 0 || num > 255) {
-        return false;
+        // 判断转化为二进制数字后是否在0-255
+        if (num < 0 || num > 255) {
+          return false;
+        }
       }
     }
 
