@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,6 +78,58 @@ public class AlgorithmService {
       }
       map.put(nums[i], i);
     }
+    return res;
+  }
+
+  /**
+   * 给出一个有n个元素的数组S，S中是否有元素a,b,c满足a+b+c=0？找出数组S中所有满足条件的三元组。
+   * 注意：
+   * 三元组（a、b、c）中的元素必须按非降序排列。（即a≤b≤c）
+   * 解集中不能包含重复的三元组。
+   * <p>
+   * 解：
+   * 1. 将数组升序排序
+   * 2. 先将第一个元素指定为i（固定）
+   * 3. 再指定left、right
+   * 4. 根据left+right<0 则 left右移，left+right>0 则right左移，=0则记录
+   *
+   * @return
+   */
+  public List<List<Integer>> threeSum(int[] nums) {
+    Arrays.sort(nums);
+
+    List<List<Integer>> res = new ArrayList<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      // i去重
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
+      int l = i + 1;
+      int r = nums.length;
+      while (l < r) {
+        if (nums[i] + nums[l] + nums[r] < 0) {
+          l++;
+        } else if (nums[i] + nums[l] + nums[r] > 0) {
+          r++;
+        } else {
+          res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+
+          // l、r去重
+          int t = nums[l];
+          while (l < r && t == nums[l]) {
+            l++;
+          }
+
+          t = nums[r];
+          while (r > l && t == nums[r]) {
+            r--;
+          }
+        }
+      }
+
+    }
+
     return res;
   }
 

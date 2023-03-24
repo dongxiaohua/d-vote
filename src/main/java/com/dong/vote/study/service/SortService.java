@@ -2,6 +2,9 @@ package com.dong.vote.study.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 数组或排序相关算法
  *
@@ -233,5 +236,13 @@ public class SortService {
       //重复右侧列
       quickSort(array, i + 1, r);
     }
+  }
+
+
+  public static void main(String[] args) {
+    Map<String,Object> map = new HashMap<>();
+    long l = 1000L;
+    map.put("a",l);
+    map.get("a");
   }
 }
