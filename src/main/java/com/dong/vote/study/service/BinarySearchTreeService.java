@@ -3,6 +3,7 @@ package com.dong.vote.study.service;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -141,5 +142,46 @@ public class BinarySearchTreeService {
     return head;
   }
 
+  /**
+   * 根据前序、中序数组重建二叉树
+   * <p>
+   * 给定节点数为 n 的二叉树的前序遍历和中序遍历结果，请重建出该二叉树并返回它的头结点。
+   * 例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}
+   * <p>
+   * 解：
+   * 1. 前序数组首元素为头结点
+   * 2. 根据1可找出中序数组中头结点的位置index
+   * 3. 左子树的前序数组：根据中序数组index位置长度，可判断相同长度的前序数组，但需要排除首节点（1 -- index）
+   * 4. 左子树中序数组：中序数组中0 -- index则为中序数组
+   * 5. 同理，右子树的前序数组：index+1 -- pre.length
+   * 6. 右子树的中序数组：index+1 -- vin.length
+   *
+   * @param pre 前序数组
+   * @param vin 中序数组
+   * @return
+   */
+  public TreeNode reConstructBinaryTree(int[] pre, int[] vin) {
+
+    // 头结点
+    TreeNode root = new TreeNode(pre[0]);
+    // 确定头结点在中序数组中的位置
+    int index = findIndex(pre, vin);
+
+    // root.left = reConstructBinaryTree(左子树前序数组，左子树中序数组);
+    root.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1, index + 1), Arrays.copyOfRange(vin, 0, index));
+    // root.right = reConstructBinaryTree(右子树前序数组，右子树中序数组);
+    root.right = reConstructBinaryTree(Arrays.copyOfRange(pre, index + 1, pre.length), Arrays.copyOfRange(vin, index + 1, vin.length));
+
+    return root;
+  }
+
+  private int findIndex(int[] pre, int[] vin) {
+    for (int i = 0; i < vin.length; i++) {
+      if (pre[0] == vin[i]) {
+        return i;
+      }
+    }
+    return 0;
+  }
 
 }
