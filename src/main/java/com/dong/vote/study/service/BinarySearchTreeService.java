@@ -162,6 +162,11 @@ public class BinarySearchTreeService {
    */
   public TreeNode reConstructBinaryTree(int[] pre, int[] vin) {
 
+    // 定义跳出递归条件
+    if (pre == null || pre.length == 0) {
+      return null;
+    }
+
     // 头结点
     TreeNode root = new TreeNode(pre[0]);
     // 确定头结点在中序数组中的位置
