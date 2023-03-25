@@ -8,6 +8,9 @@ package com.dong.vote.study.service;
  */
 public class LruService {
 
+  Entry head, tail;
+
+
   public static class Entry {
     public Entry pre;
     public Entry next;
