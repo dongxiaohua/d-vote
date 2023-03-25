@@ -89,6 +89,31 @@ public class BinarySearchTreeService {
     return root;
   }
 
+  /**
+   * 找出二叉树的最近公共祖先
+   *
+   * @param root
+   * @param p
+   * @param q
+   * @return
+   */
+  public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+    // 先判断当前节点，为null或者等于当前查找阶段则直接返回当前节点
+    if (root == null || root == p || root == q) {
+      return root;
+    }
+
+    TreeNode left = lowestCommonAncestor2(root.left, p, q);
+    TreeNode right = lowestCommonAncestor2(root.right, p, q);
+
+    // 左右子树都有，说明p、q在根节点两边，则最近祖先为根节点
+    if (left != null && right != null) {
+      return root;
+    }
+
+    return left == null ? right : left;
+  }
+
 
   /**
    * 已知一个搜索二叉树的后续遍历数组postArr，请根据postArr，重建出整棵树，返回头节点
