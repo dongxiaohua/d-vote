@@ -3,9 +3,12 @@ package com.dong.vote.study.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -430,6 +433,39 @@ public class AlgorithmService {
     }
 
     return sb.reverse().toString();
+  }
+
+
+  /**
+   * 最大矩形面积
+   * 给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
+   * [2,1,5,6,2,3]
+   * 求在该柱状图中，能够勾勒出来的矩形的最大面积。
+   *
+   *  单调栈
+   *
+   *  1. 左右各增加一个0
+   *  2. 每次将下表入栈
+   *  3. 入栈前要判断，当前位置的高度是否比之前位置(栈中按顺序拿)的小，小则出栈计算当前面积，宽：当前下表-栈中弹出的下标-1，高：栈中取出的位置的高（较小的那个）
+   *
+   * @param heights
+   * @return
+   */
+  public int largestRectangleArea(int[] heights) {
+    int res = 0;
+    LinkedList<Integer> stack = new LinkedList<>();
+    int[] new_heights = new int[heights.length + 2];
+    for (int i = 1; i < heights.length + 1; i++) {
+      new_heights[i] = heights[i - 1];
+    }
+    for (int i = 0; i < new_heights.length; i++) {
+      while (!stack.isEmpty() && new_heights[stack.peek()] > new_heights[i]) {
+        int cur = stack.pop();
+        res = Math.max(res, (i - stack.peek() - 1) * new_heights[cur]);
+      }
+      stack.push(i);
+    }
+    return res;
   }
 
 }

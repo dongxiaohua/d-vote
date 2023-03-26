@@ -60,4 +60,12 @@ class AlgorithmServiceTest extends Specification {
     println "======"
     println algorithmService.difference(a, b)
   }
+
+
+  def "最大矩形面积" () {
+    given:
+    int[] arr = [2,1,5,6,2,3]
+    expect:
+    println algorithmService.largestRectangleArea(arr)
+  }
 }

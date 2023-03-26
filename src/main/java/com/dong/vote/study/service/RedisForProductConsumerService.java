@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author: dongxiaohua
  * @date: 2023-03-22 01:01:59
  */
-@Service
+//@Service
 public class RedisForProductConsumerService {
 
   private java.util.concurrent.ExecutorService executor = new ThreadPoolExecutor(0, 100, 10, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100), new ThreadFactoryBuilder()
