@@ -62,10 +62,17 @@ class AlgorithmServiceTest extends Specification {
   }
 
 
-  def "最大矩形面积" () {
+  def "最大矩形面积"() {
     given:
-    int[] arr = [2,1,5,6,2,3]
+    int[] arr = [2, 1, 5, 6, 2, 3]
     expect:
     println algorithmService.largestRectangleArea(arr)
+  }
+
+  def "集合所有子集"() {
+    given:
+    int[] arr = [1, 2, 3]
+    expect:
+    println algorithmService.subsets(arr)
   }
 }

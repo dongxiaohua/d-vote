@@ -468,4 +468,52 @@ public class AlgorithmService {
     return res;
   }
 
+
+
+
+  /**
+   * 现在有一个没有重复元素的整数集合S，求S的所有子集
+   * 注意：
+   * 你给出的子集中的元素必须按升序排列
+   * 给出的解集中不能出现重复的元素
+   *
+   * [1,2,3]
+   *[[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]
+   * @param S
+   * @return
+   */
+  public ArrayList<ArrayList<Integer>> subsets(int[] S) {
+    ArrayList<ArrayList<Integer> > res = new ArrayList<>();
+    //临时存储作用
+    List<Integer> temp = new ArrayList<>();
+    //首先放入空集
+    res.add(new ArrayList<>(temp));
+    //i用来表示每次返回几个长度的子集，如 i = 1返回长度为1的子集
+    for (int i = 1; i <= S.length; i ++) {
+      dfs(i, 0, S, temp, res);
+    }
+    return res;
+  }
+
+  /*
+  k 代表temp每次最多存储几个，index代表遍历到哪个位置，S代表给你的数组, temp临时存储
+  */
+  public void dfs(int length, int index, int[] S, List<Integer> temp,
+                  ArrayList<ArrayList<Integer> > res) {
+    //当temp数组的存放长度等于k的时候就把temp丢进res里面
+    if (length == temp.size()) {
+      res.add(new ArrayList<>(temp));
+      return ;
+    }
+    //进行子集的遍历
+    for (int i = index; i < S.length; i ++) {
+      //放入当前数
+      temp.add(S[i]);
+      //下一个位置的递归
+      dfs(length, i + 1, S, temp, res);
+      //回溯到上一个位置
+      temp.remove(temp.size() - 1);
+    }
+  }
+
 }
