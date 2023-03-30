@@ -1,8 +1,11 @@
 package com.dong.vote.study.service;
 
+import com.dong.vote.study.test.ListNode;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.lang.ref.SoftReference;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
