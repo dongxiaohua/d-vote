@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @author: dongxiaohua
  * @date: 2022-09-18 14:47:38
  */
-public abstract class AbstracrBaseService<DO extends ConfigDO, DTO extends ConfigDTO> implements IBaseService<DTO>, ApplicationContextAware {
+public abstract class AbstractBaseService<DO extends ConfigDO, DTO extends ConfigDTO> implements IBaseService<DTO>, ApplicationContextAware {
 
   protected final AbstractBaseRepository<DO> repository;
   protected final String type;
@@ -37,7 +37,7 @@ public abstract class AbstracrBaseService<DO extends ConfigDO, DTO extends Confi
 //  protected LoadingCache<String, Optional<DTO>> isGrayCache;
 
 
-  public AbstracrBaseService(AbstractConfigRepository<DO> repository, String type) {
+  public AbstractBaseService(AbstractConfigRepository<DO> repository, String type) {
     this.repository = repository;
     initClass();
 
