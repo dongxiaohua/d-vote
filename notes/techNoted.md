@@ -23,7 +23,7 @@
 
 * 关于ScheduledExecutorService
 
-* 关于FunctionalInterface
+* 关于FunctionalInterface：函数式接口
 
 * 关于取模 %
     1. 目的是想通过指定标识来对100取模来让用户随机落入指定分桶实现放量灰度能力。

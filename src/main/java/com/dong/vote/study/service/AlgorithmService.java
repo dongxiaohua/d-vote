@@ -1,19 +1,15 @@
 package com.dong.vote.study.service;
 
-import com.dong.vote.study.test.ListNode;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.lang.ref.SoftReference;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 算法练习
@@ -444,12 +440,12 @@ public class AlgorithmService {
    * 给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
    * [2,1,5,6,2,3]
    * 求在该柱状图中，能够勾勒出来的矩形的最大面积。
-   *
-   *  单调栈
-   *
-   *  1. 左右各增加一个0
-   *  2. 每次将下表入栈
-   *  3. 入栈前要判断，当前位置的高度是否比之前位置(栈中按顺序拿)的小，小则出栈计算当前面积，宽：当前下表-栈中弹出的下标-1，高：栈中取出的位置的高（较小的那个）
+   * <p>
+   * 单调栈
+   * <p>
+   * 1. 左右各增加一个0
+   * 2. 每次将下表入栈
+   * 3. 入栈前要判断，当前位置的高度是否比之前位置(栈中按顺序拿)的小，小则出栈计算当前面积，宽：当前下表-栈中弹出的下标-1，高：栈中取出的位置的高（较小的那个）
    *
    * @param heights
    * @return
@@ -472,27 +468,26 @@ public class AlgorithmService {
   }
 
 
-
-
   /**
    * 现在有一个没有重复元素的整数集合S，求S的所有子集
    * 注意：
    * 你给出的子集中的元素必须按升序排列
    * 给出的解集中不能出现重复的元素
-   *
+   * <p>
    * [1,2,3]
-   *[[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]
+   * [[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]
+   *
    * @param S
    * @return
    */
   public ArrayList<ArrayList<Integer>> subsets(int[] S) {
-    ArrayList<ArrayList<Integer> > res = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
     //临时存储作用
     List<Integer> temp = new ArrayList<>();
     //首先放入空集
     res.add(new ArrayList<>(temp));
     //i用来表示每次返回几个长度的子集，如 i = 1返回长度为1的子集
-    for (int i = 1; i <= S.length; i ++) {
+    for (int i = 1; i <= S.length; i++) {
       dfs(i, 0, S, temp, res);
     }
     return res;
@@ -501,15 +496,14 @@ public class AlgorithmService {
   /*
   k 代表temp每次最多存储几个，index代表遍历到哪个位置，S代表给你的数组, temp临时存储
   */
-  public void dfs(int length, int index, int[] S, List<Integer> temp,
-                  ArrayList<ArrayList<Integer> > res) {
+  public void dfs(int length, int index, int[] S, List<Integer> temp, ArrayList<ArrayList<Integer>> res) {
     //当temp数组的存放长度等于k的时候就把temp丢进res里面
     if (length == temp.size()) {
       res.add(new ArrayList<>(temp));
-      return ;
+      return;
     }
     //进行子集的遍历
-    for (int i = index; i < S.length; i ++) {
+    for (int i = index; i < S.length; i++) {
       //放入当前数
       temp.add(S[i]);
       //下一个位置的递归
@@ -518,5 +512,172 @@ public class AlgorithmService {
       temp.remove(temp.size() - 1);
     }
   }
+
+  /**
+   * 给一个单链表头节点head和两个整数left和right, left <= right,
+   * 返回链表反转后的头节点
+   * <p>
+   * left <= right
+   *
+   * @param head
+   * @return
+   */
+  public ListNode reverseBetween(ListNode head, int left, int right) {
+    // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论
+    ListNode dummyNode = new ListNode(-1);
+    dummyNode.next = head;
+
+    ListNode pre = dummyNode;
+    // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点
+    // 建议写在 for 循环里，语义清晰
+    for (int i = 0; i < left - 1; i++) {
+      pre = pre.next;
+    }
+
+    // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点
+    ListNode rightNode = pre;
+    for (int i = 0; i < right - left + 1; i++) {
+      rightNode = rightNode.next;
+    }
+
+    // 第 3 步：切断出一个子链表（截取链表）
+    ListNode leftNode = pre.next;
+    ListNode curr = rightNode.next;
+
+    // 注意：切断链接
+    pre.next = null;
+    rightNode.next = null;
+
+    // 第 4 步：同第 206 题，反转链表的子区间
+    reverseLinkedList(leftNode);
+
+    // 第 5 步：接回到原来的链表中
+    pre.next = rightNode;
+    leftNode.next = curr;
+    return dummyNode.next;
+  }
+
+  private void reverseLinkedList(ListNode head) {
+    // 也可以使用递归反转一个链表
+    ListNode pre = null;
+    ListNode cur = head;
+
+    while (cur != null) {
+      ListNode next = cur.next;
+      cur.next = pre;
+      pre = cur;
+      cur = next;
+    }
+  }
+
+
+  class ListNode {
+    private Integer val;
+    private ListNode next;
+
+    public ListNode(int val) {
+      this.val = val;
+    }
+  }
+
+  /**
+   * 三个线程交替打印1-100
+   */
+  public void println() {
+    AtomicInteger atomicInteger = new AtomicInteger(1);
+
+    Runnable runnable = new Runnable() {
+      @Override
+      public void run() {
+        while (atomicInteger.get() <= 100) {
+          synchronized (this) {
+            notifyAll();
+            if (atomicInteger.get() > 100) {
+              return;
+            }
+            int i = Integer.parseInt(Thread.currentThread().getName());
+            int value = i == 0 ? 3 : i;
+            if (atomicInteger.get() % 3 == i) {
+              System.out.println("线程" + value + ": " + atomicInteger.getAndAdd(1));
+            }
+            try {
+              if (atomicInteger.get() > 100) {
+                notifyAll();
+              } else {
+                wait();
+              }
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+
+          }
+        }
+      }
+    };
+
+    Thread t1 = new Thread(runnable);
+    Thread t2 = new Thread(runnable);
+    Thread t3 = new Thread(runnable);
+
+    t1.setName("1");
+    t2.setName("2");
+    t3.setName("0");
+
+    t1.start();
+    t2.start();
+    t3.start();
+
+  }
+
+  /**
+   * 大数相加
+   *
+   * @param s
+   * @param t
+   * @return
+   */
+  public String addition(String s, String t) {
+    //若是其中一个为空，返回另一个
+    if (s.length() <= 0) {
+      return t;
+    }
+    if (t.length() <= 0) {
+      return s;
+    }
+    //让s为较长的，t为较短的
+    if (s.length() < t.length()) {
+      String temp = s;
+      s = t;
+      t = temp;
+    }
+    int carry = 0; //进位标志
+    char[] res = new char[s.length()];
+    //从后往前遍历较长的字符串
+    for (int i = s.length() - 1; i >= 0; i--) {
+      //转数字加上进位
+      int temp = s.charAt(i) - '0' + carry;
+      //转较短的字符串相应的从后往前的下标
+      int j = i - s.length() + t.length();
+      //如果较短字符串还有
+      if (j >= 0) {
+        //转数组相加
+        temp += t.charAt(j) - '0';
+      }
+      //取进位
+      carry = temp / 10;
+      //去十位
+      temp = temp % 10;
+      //修改结果
+      res[i] = (char) (temp + '0');
+    }
+    String output = String.valueOf(res);
+    //最后的进位
+    if (carry == 1) {
+      output = '1' + output;
+    }
+
+    return output;
+  }
+
 
 }

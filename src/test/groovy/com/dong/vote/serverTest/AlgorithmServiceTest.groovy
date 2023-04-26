@@ -75,4 +75,10 @@ class AlgorithmServiceTest extends Specification {
     expect:
     println algorithmService.subsets(arr)
   }
+
+
+  def "println"(){
+    expect:
+    algorithmService.println()
+  }
 }

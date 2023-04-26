@@ -1,19 +1,30 @@
 package com.dong.vote.study.service;
 
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
+import org.apache.commons.pool2.proxy.CglibProxySource;
+import org.quartz.simpl.SimpleThreadPool;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author: dongxiaohua
  * @date: 2023-03-31 17:04:22
  */
-public class ThreadLocalService {
+public class ThreadLocalService implements MethodInterceptor {
 
   private static final ReferenceQueue<Object> QUEUE = new ReferenceQueue<>();
   private static final LinkedList<byte[]> LIST = new LinkedList<>();
@@ -99,6 +110,17 @@ public class ThreadLocalService {
 
     byte[] b = new byte[1024 * 1024 * 6];
     System.out.println(sr.get());
+  }
+
+
+  @Override
+  @Transactional
+  public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+    // 前置通知
+    Object res = methodProxy.invokeSuper(o,objects);
+
+    // 后置通知
+    return res;
   }
 
 

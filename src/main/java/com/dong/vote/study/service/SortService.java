@@ -1,9 +1,17 @@
 package com.dong.vote.study.service;
 
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 数组或排序相关算法
@@ -239,10 +247,103 @@ public class SortService {
   }
 
 
-  public static void main(String[] args) {
-    Map<String,Object> map = new HashMap<>();
-    long l = 1000L;
-    map.put("a",l);
-    map.get("a");
+  public static void funs() {
+    StringBuilder sb = new StringBuilder();
+    funs(sb);
+    System.out.println(sb.toString());
   }
+
+  public static void funs(StringBuilder sb) {
+    sb = new StringBuilder();
+    sb.append("b");
+
+    System.out.println(sb);
+  }
+
+
+  /**
+   * [3,5]
+   * [5,8]
+   * <p>
+   * [3,8]
+   * <p>
+   * <p>
+   * [3,8]
+   * [10,15]
+   * <p>
+   * [[],[]]
+   *
+   * @param nums
+   * @return
+   */
+  public static List<int[]> merge(List<int[]> nums) {
+
+
+    if (CollectionUtils.isEmpty(nums)) {
+      return null;
+    }
+
+    List<int[]> merges = Lists.newArrayList();
+
+    for (int i = 0; i < nums.size(); i++) {
+      int l = nums.get(i)[0];
+      int r = nums.get(i)[1];
+      if (merges.size() == 0 || merges.get(merges.size() - 1)[1] < l) {
+        merges.add(new int[] {l, r});
+        continue;
+      }
+
+      merges.get(merges.size() - 1)[1] = Math.max(merges.get(merges.size() - 1)[1], r);
+    }
+
+    return merges;
+
+  }
+
+  public static void main(String[] args) {
+
+  }
+
+
+  public String resove(int count) {
+    String numStr = String.valueOf(count);
+
+    String[] s = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
+    String[] s2 = {"十", "百", "千", "万", "十", "百", "千", "亿", "十", "百", "千"};
+    String result = "";
+    int n = numStr.length();
+    for (int i = 0; i < n; i++) {
+      int num = numStr.charAt(i) - 48;//把字符串型转换成int型
+      if (i != n - 1 && num != 0)//即不为最后一个也不为0
+      {
+        result += s[num] + s2[n - 2 - i];
+      } else {
+        if (i == n - 1 && num == 0) {
+          result += "";
+        } else {
+          result += s[num];
+        }
+      }
+    }
+    return result;
+  }
+
+
+  public volatile int num = 0;
+
+  public void addNum() {
+    ExecutorService executorService = new ThreadPoolExecutor(10, 10, 100, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
+    while (num < 100) {
+      synchronized (this) {
+        executorService.submit(new Runnable() {
+          @Override
+          public void run() {
+            num++;
+          }
+        });
+      }
+    }
+  }
+
+
 }
