@@ -1,7 +1,10 @@
 package com.dong.vote.study.service;
 
+import com.google.common.collect.Lists;
+import com.mchange.v1.lang.BooleanUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import sun.tools.tree.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 算法练习
@@ -679,5 +683,59 @@ public class AlgorithmService {
     return output;
   }
 
+  public static void main(String[] args) {
+    HashMap<String,Object> map = new HashMap<>(13);
+  }
 
+  public void getNull(ListNode[] root){
+    Map<ListNode,Boolean> map = new HashMap<>();
+
+    for (int i = 0; i < root.length; i++) {
+      ListNode theNode = root[i];
+      while(theNode != null && theNode.next != null) {
+        if (!Boolean.TRUE.equals(map.get(theNode))) {
+          map.put(theNode,Boolean.TRUE);
+        }
+        theNode = theNode.next;
+      }
+    }
+
+  }
+
+
+  volatile int value = 0;
+
+  final int max = 100;
+  volatile int length = 0;
+
+  private final AtomicReference<ListNode> top = new AtomicReference<>();
+
+  public void push(){
+    ListNode old;
+    ListNode newHead = new ListNode(1);
+
+    while (length<100 && testAndSet(value,value+1,value)) {
+      old = top.get();
+      newHead.next = old;
+      length++;
+    }
+  }
+
+  public ListNode pop(){
+    ListNode old;
+    ListNode newHead;
+    while (testAndSet(value, value + 1, value)) {
+      old = top.get();
+      if (old == null) {
+        return null;
+      }
+      newHead = old.next;
+    }
+    return null;
+  }
+
+
+  boolean testAndSet(int value, int target,int before){
+    return true;
+  }
 }
